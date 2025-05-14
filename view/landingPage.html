@@ -1,11 +1,585 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Aplikasi Lingkungan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=Inter:wght@500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1A9465;
+            --secondary-color: #20865F;
+            --dark-green: #19684A;
+            --gray-color: #9F9F9F;
+            --dark-gray: #585858;
+            --black: #010101;
+            --white: #FFFFFF;
+            --background: #FBFCFE;
+            --emergency-red: #D23738;
+            --emergency-dark-red: #952728;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--background);
+            color: var(--black);
+            line-height: 1.5;
+            max-width: 414px;
+            margin: 0 auto;
+            position: relative;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .header {
+            position: relative;
+            height: 190px;
+            overflow: hidden;
+        }
+
+        .header-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(26, 148, 101, 0.62);
+            z-index: 1;
+        }
+
+        .header-gradient {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.78) 100%);
+            z-index: 2;
+        }
+
+        .status-bar {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            color: var(--white);
+            z-index: 10;
+        }
+
+        .status-time {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 15px;
+        }
+        
+        .user-profile {
+            position: relative;
+            z-index: 10;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .profile-pic {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            border: 4.42px solid #E9F4F0;
+            object-fit: cover;
+            position: relative;
+        }
+        
+        .badge {
+            position: absolute;
+            top: 0;
+            left: 115px;
+            display: flex;
+            background-color: var(--secondary-color);
+            border-radius: 9.5px;
+            padding: 2px;
+            width: 52px;
+            height: 19px;
+        }
+        
+        .badge-green {
+            color: var(--white);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 0 5px;
+        }
+        
+        .badge-white {
+            background-color: var(--white);
+            color: var(--primary-color);
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 9.5px;
+            padding: 0 5px;
+            margin-left: 5px;
+        }
+        
+        .user-info {
+            margin-left: 20px;
+            color: var(--white);
+        }
+        
+        .user-name {
+            font-size: 19px;
+            font-weight: 700;
+            line-height: 26.6px;
+        }
+        
+        .user-role {
+            font-size: 11px;
+            font-weight: 400;
+            line-height: 15.4px;
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+        }
+        
+        .user-role svg {
+            margin-right: 5px;
+            width: 15px;
+            height: 15px;
+        }
+        
+        .user-address {
+            font-size: 11px;
+            font-weight: 400;
+            line-height: 15.4px;
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+        }
+        
+        .user-address svg {
+            margin-right: 5px;
+            width: 15px;
+            height: 15px;
+        }
+        
+        .notification-icon {
+            position: absolute;
+            right: 20px;
+            top: 85px;
+            z-index: 10;
+        }
+
+        .menu-title {
+            color: var(--white);
+            font-size: 16px;
+            font-weight: 700;
+            margin: 10px 20px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .main-content {
+            position: relative;
+            z-index: 10;
+            margin-top: -20px;
+        }
+        
+        .menu-card {
+            background-color: var(--white);
+            border-radius: 11px;
+            padding: 25px 15px;
+            margin: 0 20px;
+            box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            justify-items: center;
+        }
+        
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 78.6px;
+        }
+        
+        .menu-icon {
+            width: 74px;
+            height: 74px;
+            border-radius: 17px;
+            background: linear-gradient(180deg, #4FA986 31%, #239368 51%, #19684A 72%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+            margin-bottom: 6px;
+        }
+        
+        .menu-icon svg {
+            width: 50px;
+            height: 50px;
+            fill: var(--white);
+        }
+        
+        .menu-label {
+            color: var(--black);
+            font-size: 13px;
+            font-weight: 400;
+            text-align: center;
+            line-height: 18.2px;
+        }
+        
+        .info-section {
+            margin-top: 30px;
+            padding: 0 20px;
+        }
+        
+        .info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .info-title {
+            color: var(--black);
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 22.4px;
+        }
+        
+        .view-all {
+            display: flex;
+            align-items: center;
+            color: var(--primary-color);
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 22.4px;
+        }
+        
+        .view-all svg {
+            margin-left: 5px;
+        }
+        
+        .info-card {
+            position: relative;
+            width: 100%;
+            height: 173px;
+            border-radius: 11px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        
+        .info-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .info-overlay {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: linear-gradient(180deg, rgba(26, 148, 101, 0) 0%, #1A9465 100%);
+            padding: 15px;
+        }
+        
+        .info-card-title {
+            color: var(--white);
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 22.4px;
+            margin-bottom: 5px;
+        }
+        
+        .info-card-desc {
+            color: var(--white);
+            font-size: 11px;
+            font-weight: 400;
+            line-height: 15.4px;
+        }
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 414px;
+            background-color: var(--white);
+            display: flex;
+            justify-content: space-around;
+            padding: 5px 0;
+            box-shadow: 0px 1px 4.2px rgba(0, 0, 0, 0.25);
+            z-index: 100;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 6px 0;
+            width: 20%;
+        }
+        
+        .nav-icon {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .nav-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .nav-label {
+            font-size: 11px;
+            font-weight: 400;
+            line-height: 15.4px;
+            text-align: center;
+            color: var(--gray-color);
+        }
+        
+        .nav-active .nav-icon svg {
+            fill: var(--primary-color);
+        }
+        
+        .nav-active .nav-label {
+            color: var(--primary-color);
+        }
+        
+        .emergency-button {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 72px;
+            height: 72px;
+            border-radius: 38.32px;
+            background: linear-gradient(0deg, #952728 26%, #BF3233 54%, #D23738 76%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 0 7px var(--white);
+        }
+        
+        .emergency-icon {
+            width: 47.61px;
+            height: 47.61px;
+        }
+        
+        .emergency-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--white);
+        }
+        
+        .emergency-label {
+            color: var(--dark-gray);
+            font-size: 11px;
+            font-weight: 800;
+            line-height: 15.4px;
+        }
+    </style>
 </head>
 <body>
+    <!-- Header Section -->
+    <div class="header">
+        <div class="header-background"></div>
+        <div class="header-gradient"></div>
+        
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-time">9:41</div>
+            <div class="status-icons">
+                <!-- Signal and Battery Icons would go here -->
+            </div>
+        </div>
+        
+        <!-- User Profile -->
+        <div class="user-profile">
+            <div class="profile-container">
+                <img src="/api/placeholder/84/84" alt="Profile Picture" class="profile-pic">
+                <div class="badge">
+                    <span class="badge-green">G7</span>
+                    <span class="badge-white">38</span>
+                </div>
+            </div>
+            
+            <div class="user-info">
+                <h2 class="user-name">Raditya</h2>
+                <div class="user-role">
+                    <svg viewBox="0 0 15 15" fill="none">
+                        <path d="M14.06 10.31H0.94V2.34H14.06V10.31Z" fill="white"/>
+                    </svg>
+                    Warga
+                </div>
+                <div class="user-address">
+                    <svg viewBox="0 0 15 15" fill="none">
+                        <path d="M9.69 1.88H13.44V11.93H0.78V1.93L9.69 1.88Z" fill="white"/>
+                    </svg>
+                    RT 12 RW09 Perum Taman Aster
+                </div>
+            </div>
+        </div>
+        
+        <!-- Notification Icon -->
+        <div class="notification-icon">
+            <svg width="35" height="35" viewBox="0 0 35 35" fill="none">
+                <path d="M26.27 30.62V2.19H4.36V30.62H26.27Z" fill="white"/>
+            </svg>
+        </div>
+        
+        <!-- Menu Title -->
+        <div class="menu-title">Menu Utama</div>
+    </div>
     
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Menu Card -->
+        <div class="menu-card">
+            <div class="menu-grid">
+                <!-- Iuran -->
+                <div class="menu-item">
+                    <div class="menu-icon">
+                        <svg viewBox="0 0 50 50" fill="none">
+                            <path d="M35.42 20.83H10.93V41.66H35.42V20.83Z" fill="white"/>
+                            <path d="M17.71 16.67H26.04V25H17.71V16.67Z" fill="white"/>
+                            <path d="M35.42 10.42H4.17V31.25H35.42V10.42Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <div class="menu-label">Iuran</div>
+                </div>
+                
+                <!-- Penerbitan Surat -->
+                <div class="menu-item">
+                    <div class="menu-icon">
+                        <svg viewBox="0 0 50 50" fill="none">
+                            <path d="M40 20H5V45H40V20Z" fill="white"/>
+                            <path d="M35 12.5H7.5V37.5H35V12.5Z" fill="white"/>
+                            <path d="M39.27 5H5.36V25.62H39.27V5Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <div class="menu-label">Penerbitan Surat</div>
+                </div>
+                
+                <!-- Voting -->
+                <div class="menu-item">
+                    <div class="menu-icon">
+                        <svg viewBox="0 0 50 50" fill="none">
+                            <path d="M41.66 4.16H4.17V45.83H41.66V4.16Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <div class="menu-label">Voting</div>
+                </div>
+                
+                <!-- CCTV -->
+                <div class="menu-item">
+                    <div class="menu-icon">
+                        <svg viewBox="0 0 50 50" fill="none">
+                            <rect x="4.17" y="8.31" width="40.38" height="35.44" stroke="white" stroke-width="3.58"/>
+                        </svg>
+                    </div>
+                    <div class="menu-label">CCTV</div>
+                </div>
+                
+                <!-- Lapor -->
+                <div class="menu-item">
+                    <div class="menu-icon">
+                        <svg viewBox="0 0 50 50" fill="none">
+                            <circle cx="25" cy="25" r="20.31" stroke="white" stroke-width="2.69"/>
+                            <circle cx="22.74" cy="22.42" r="11.18" stroke="white" stroke-width="2.69"/>
+                            <circle cx="12.8" cy="29.82" r="6.04" stroke="white" stroke-width="2.69"/>
+                        </svg>
+                    </div>
+                    <div class="menu-label">Lapor</div>
+                </div>
+                
+                <!-- Kontak Darurat -->
+                <div class="menu-item">
+                    <div class="menu-icon">
+                        <svg viewBox="0 0 50 50" fill="none">
+                            <path d="M39.06 6.25H4.69V45.31H39.06V6.25Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <div class="menu-label">Kontak Darurat</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Information Section -->
+        <div class="info-section">
+            <div class="info-header">
+                <div class="info-title">Informasi</div>
+                <div class="view-all">
+                    Lihat Semua
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path d="M0.6 2.4H16.8V15.58H0.6V2.4Z" fill="#1A9465"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <img src="/api/placeholder/295/173" alt="Information Image">
+                <div class="info-overlay">
+                    <div class="info-card-title">Rencana Agenda Perayaan HUT RI 2025</div>
+                    <div class="info-card-desc">Dalam rangka perayaan Hari Ulang Tahun Republik Indonesia (HUT RI) dengan berbagai kegiatan...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-item nav-active">
+            <div class="nav-icon">
+                <svg viewBox="0 0 35 35" fill="none">
+                    <path d="M23.33 25.52H5.83V5.1H23.33V25.52Z" fill="#1A9465"/>
+                </svg>
+            </div>
+            <div class="nav-label">Beranda</div>
+        </div>
+        
+        <div class="nav-item">
+            <div class="nav-icon">
+                <svg viewBox="0 0 35 35" fill="none">
+                    <path d="M28.44 4.38H4.38V32.09H28.44V4.38Z" fill="#9F9F9F"/>
+                </svg>
+            </div>
+            <div class="nav-label">Informasi</div>
+        </div>
+        
+        <div class="nav-item">
+            <div class="emergency-button">
+                <div class="emergency-icon">
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <path d="M38.69 0H4.46V40.17H38.69V0Z" fill="white"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="emergency-label">DARURAT</div>
+        </div>
+        
+        <div class="nav-item">
+            <div class="nav-icon">
+                <svg viewBox="0 0 35 35" fill="none">
+                    <path d="M30.62 2.19H2.19V32.81H30.62V2.19Z" fill="#9F9F9F"/>
+                </svg>
+            </div>
+            <div class="nav-label">Agenda</div>
+        </div>
+        
+        <div class="nav-item">
+            <div class="nav-icon">
+                <svg viewBox="0 0 35 35" fill="none">
+                    <path d="M23.33 5.83H5.83V29.16H23.33V5.83Z" fill="#9F9F9F"/>
+                </svg>
+            </div>
+            <div class="nav-label">Akun</div>
+        </div>
+    </div>
 </body>
 </html>
