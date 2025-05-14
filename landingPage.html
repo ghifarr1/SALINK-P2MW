@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Lingkungan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=Inter:wght@500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1A9465;
+            --secondary-color: #20865F;
+            --dark-green: #19684A;
+            --gray-color: #9F9F9F;
+            --dark-gray: #585858;
+            --black: #010101;
+            --white: #FFFFFF;
+            --background: #FBFCFE;
+            --emergency-red: #D23738;
+            --emergency-dark-red: #952728;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--background);
+            color: var(--black);
+            line-height: 1.5;
+            margin: 0 auto;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .container {
+            margin: 0 auto;
+            width: 100%;
+            position: relative;
+            min-height: 100vh;
+            padding-bottom: 70px; /* Space for bottom nav */
+        }
+
+        .header {
+            position: relative;
+            height: 190px;
+            overflow: hidden;
+            background-color: var(--primary-color);
+        }
+
+        .header-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(26, 148, 101, 0.62);
+            z-index: 1;
+        }
+
+        .header-gradient {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.78) 100%);
+            z-index: 2;
+        }
+        
+        .user-profile {
+            position: relative;
+            z-index: 10;
+            padding: 30px 20px 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .profile-container {
+            position: relative;
+        }
+        
+        .profile-pic {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            border: 4.42px solid #E9F4F0;
+            object-fit: cover;
+            position: relative;
+        }
+        
+        .badge {
+            position: absolute;
+            top: 0;
+            left: 74px;
+            display: flex;
+            background-color: var(--secondary-color);
+            border-radius: 9.5px;
+            padding: 2px;
+            width: 52px;
+            height: 19px;
+        }
+        
+        .badge-green {
+            color: var(--white);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 0 5px;
+        }
+        
+        .badge-white {
+            background-color: var(--white);
+            color: var(--primary-color);
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 9.5px;
+            padding: 0 5px;
+            margin-left: 5px;
+        }
+        
+        .user-info {
+            margin-left: 20px;
+            color: var(--white);
+        }
+        
+        .user-name {
+            font-size: 19px;
+            font-weight: 700;
+            line-height: 26.6px;
+        }
+        
+        .user-role {
+            font-size: 11px;
+            font-weight: 400;
+            line-height: 15.4px;
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+        }
+        
+        .user-role img {
+            margin-right: 5px;
+            width: 15px;
+            height: 15px;
+        }
+        
+        .user-address {
+            font-size: 11px;
+            font-weight: 400;
+            line-height: 15.4px;
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+        }
+        
+        .user-address img {
+            margin-right: 5px;
+            width: 15px;
+            height: 15px;
+        }
+        
+        .notification-icon {
+            position: absolute;
+            right: 20px;
+            top: 30px;
+            z-index: 10;
+        }
+
+        .notification-icon img {
+            width: 35px;
+            height: 35px;
+            filter: brightness(0) invert(1);
+        }
+
+        .menu-title {
+            color: var(--white);
+            font-size: 16px;
+            font-weight: 700;
+            margin: 10px 20px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .main-content {
+            position: relative;
+            z-index: 10;
+            margin-top: -20px;
+            padding-bottom: 30px;
+        }
+        
+        .menu-card {
+            background-color: var(--white);
+            border-radius: 11px;
+            padding: 25px 15px;
+            margin: 0 20px;
+            box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            justify-items: center;
+        }
+        
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 78.6px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .menu-icon {
+            width: 74px;
+            height: 74px;
+            border-radius: 17px;
+            background: linear-gradient(180deg, #4FA986 31%, #239368 51%, #19684A 72%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+            margin-bottom: 6px;
+        }
+        
+        .menu-icon img {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .menu-label {
+            color: var(--black);
+            font-size: 13px;
+            font-weight: 400;
+            text-align: center;
+            line-height: 18.2px;
+        }
+        
+        .info-section {
+            margin-top: 30px;
+            padding: 0 20px;
+        }
+        
+        .info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .info-title {
+            color: var(--black);
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 22.4px;
+        }
+        
+        .view-all {
+            display: flex;
+            align-items: center;
+            color: var(--primary-color);
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 22.4px;
+            cursor: pointer;
+        }
+        
+        .view-all img {
+            margin-left: 5px;
+            width: 18px;
+            height: 18px;
+        }
+        
+        .info-cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .info-card {
+            position: relative;
+            width: 100%;
+            height: 173px;
+            border-radius: 11px;
+            overflow: hidden;
+        }
+        
+        .info-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .info-overlay {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: linear-gradient(180deg, rgba(26, 148, 101, 0) 0%, #1A9465 100%);
+            padding: 15px;
+        }
+        
+        .info-card-title {
+            color: var(--white);
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 22.4px;
+            margin-bottom: 5px;
+        }
+        
+        .info-card-desc {
+            color: var(--white);
+            font-size: 11px;
+            font-weight: 400;
+            line-height: 15.4px;
+        }
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: var(--white);
+            display: flex;
+            justify-content: space-around;
+            padding: 5px 0;
+            box-shadow: 0px 1px 4.2px rgba(0, 0, 0, 0.25);
+            z-index: 100;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 6px 0;
+            width: 20%;
+            cursor: pointer;
+        }
+        
+        .nav-icon {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .nav-icon img {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .nav-label {
+            font-size: 11px;
+            font-weight: 400;
+            line-height: 15.4px;
+            text-align: center;
+            color: var(--gray-color);
+        }
+        
+        .nav-active .nav-icon img {
+            filter: invert(46%) sepia(71%) saturate(561%) hue-rotate(124deg) brightness(91%) contrast(88%);
+        }
+        
+        .nav-active .nav-label {
+            color: var(--primary-color);
+        }
+        
+        .emergency-button-container {
+            position: relative;
+            height: 55px;
+        }
+        
+        .emergency-button {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 72px;
+            height: 72px;
+            border-radius: 38.32px;
+            background: linear-gradient(0deg, #952728 26%, #BF3233 54%, #D23738 76%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 0 7px var(--white);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .emergency-button:hover {
+            transform: translateX(-50%) scale(1.05);
+        }
+        
+        .emergency-icon {
+            width: 47.61px;
+            height: 47.61px;
+        }
+        
+        .emergency-icon img {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .emergency-label {
+            color: var(--dark-gray);
+            font-size: 11px;
+            font-weight: 800;
+            line-height: 15.4px;
+            margin-top: 30px;
+        }
+
+        /* Responsive design for larger screens */
+        @media (min-width: 768px) {
+            .container {
+                display: flex;
+                flex-direction: column;
+                max-width: 1200px;
+                padding-bottom: 0;
+            }
+            
+            .header {
+                height: 240px;
+                border-radius: 0 0 20px 20px;
+            }
+            
+            .main-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: -40px;
+            }
+            
+            .menu-card {
+                width: 90%;
+                max-width: 900px;
+                padding: 30px;
+                margin: 0 auto;
+            }
+            
+            .menu-grid {
+                grid-template-columns: repeat(6, 1fr);
+                gap: 25px;
+            }
+            
+            .info-section {
+                width: 90%;
+                max-width: 900px;
+                margin: 40px auto 0;
+                padding: 0;
+            }
+            
+            .info-cards-container {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+            
+            .info-card {
+                width: calc(50% - 10px);
+                height: 230px;
+            }
+            
+            .bottom-nav {
+                position: relative;
+                margin-top: 60px;
+                border-radius: 20px 20px 0 0;
+                padding: 15px 0;
+            }
+            
+            .emergency-button-container {
+                height: 75px;
+            }
+            
+            .emergency-button {
+                top: -40px;
+                width: 82px;
+                height: 82px;
+            }
+            
+            .emergency-label {
+                margin-top: 35px;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .menu-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+            
+            .menu-item {
+                width: 100px;
+            }
+            
+            .menu-icon {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .menu-icon img {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .menu-label {
+                font-size: 14px;
+            }
+            
+            .info-card {
+                width: calc(33.33% - 14px);
+            }
+            
+            .desktop-sidebar {
+                display: block;
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 250px;
+                height: 100vh;
+                background-color: var(--white);
+                box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                z-index: 150;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .show-sidebar .desktop-sidebar {
+                transform: translateX(0);
+            }
+            
+            .sidebar-toggle {
+                display: block;
+                position: fixed;
+                left: 20px;
+                top: 20px;
+                width: 40px;
+                height: 40px;
+                background-color: var(--white);
+                border-radius: 50%;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                z-index: 151;
+            }
+            
+            .sidebar-toggle div {
+                width: 20px;
+                height: 3px;
+                background-color: var(--primary-color);
+                margin: 3px 0;
+                border-radius: 3px;
+            }
+        }
+        
+        /* Mobile-only styles to match the image exactly */
+        @media (max-width: 767px) {
+            body {
+                max-width: 414px;
+                margin: 0 auto;
+            }
+            
+            .desktop-sidebar, .sidebar-toggle {
+                display: none;
+            }
+        }
+        
+        /* Desktop sidebar */
+        .desktop-sidebar {
+            display: none;
+        }
+        
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+        }
+        
+        .sidebar-header .logo {
+            color: var(--primary-color);
+            font-size: 20px;
+            font-weight: 800;
+        }
+        
+        .sidebar-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 10px;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .sidebar-menu-item:hover {
+            background-color: rgba(26, 148, 101, 0.1);
+        }
+        
+        .sidebar-menu-item.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .sidebar-menu-item .icon {
+            margin-right: 15px;
+            width: 20px;
+            height: 20px;
+        }
+        
+        .sidebar-menu-item .label {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .sidebar-menu-item.active .icon img {
+            filter: brightness(0) invert(1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Mobile Sidebar Toggle -->
+        <div class="sidebar-toggle" onclick="toggleSidebar()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        
+        <!-- Desktop Sidebar -->
+        <div class="desktop-sidebar">
+            <div class="sidebar-header">
+                <div class="logo">Aplikasi Lingkungan</div>
+            </div>
+            <div class="sidebar-menu-item active">
+                <div class="icon"><img src="./assets/icons/beranda.png" alt="Home"></div>
+                <div class="label">Beranda</div>
+            </div>
+            <div class="sidebar-menu-item">
+                <div class="icon"><img src="./assets/icons/ri_megaphone-fill.png" alt="Info"></div>
+                <div class="label">Informasi</div>
+            </div>
+            <div class="sidebar-menu-item">
+                <div class="icon"><img src="./assets/icons/Group.png" alt="Iuran"></div>
+                <div class="label">Iuran</div>
+            </div>
+            <div class="sidebar-menu-item">
+                <div class="icon"><img src="./assets/icons/surat.png" alt="Surat"></div>
+                <div class="label">Penerbitan Surat</div>
+            </div>
+            <div class="sidebar-menu-item">
+                <div class="icon"><img src="./assets/icons/voting.png" alt="Voting"></div>
+                <div class="label">Voting</div>
+            </div>
+            <div class="sidebar-menu-item">
+                <div class="icon"><img src="./assets/icons/lucide_cctv.png" alt="CCTV"></div>
+                <div class="label">CCTV</div>
+            </div>
+            <div class="sidebar-menu-item">
+                <div class="icon"><img src="./assets/icons/toa.png" alt="Lapor"></div>
+                <div class="label">Lapor</div>
+            </div>
+            <div class="sidebar-menu-item">
+                <div class="icon"><img src="./assets/icons/ph_phone-call.png" alt="Kontak"></div>
+                <div class="label">Kontak Darurat</div>
+            </div>
+            <div class="sidebar-menu-item">
+                <div class="icon"><img src="./assets/icons/ion_calendar.png" alt="Agenda"></div>
+                <div class="label">Agenda</div>
+            </div>
+            <div class="sidebar-menu-item">
+                <div class="icon"><img src="./assets/icons/akun.png" alt="Akun"></div>
+                <div class="label">Akun</div>
+            </div>
+            <div class="sidebar-menu-item" style="color: var(--emergency-red);">
+                <div class="icon"><img src="./assets/icons/darurat.png" alt="Emergency"></div>
+                <div class="label">DARURAT</div>
+            </div>
+        </div>
+        
+        <!-- Header Section -->
+        <div class="header">
+            <div class="header-background"></div>
+            <div class="header-gradient"></div>
+            
+            <!-- User Profile -->
+            <div class="user-profile">
+                <div class="profile-container">
+                    <img src="assets/images/profile1.jpg" alt="Profile Picture" class="profile-pic">
+                    <div class="badge">
+                        <span class="badge-green">G7</span>
+                        <span class="badge-white">38</span>
+                    </div>
+                </div>
+                
+                <div class="user-info">
+                    <h2 class="user-name">Raditya</h2>
+                    <div class="user-role">
+                        <img src="assets/icons/warga.png" alt="Role Icon">
+                        Warga
+                    </div>
+                    <div class="user-address">
+                        <img src="assets/icons/warga.png" alt="Address Icon">
+                        RT 12 RW09 Perum Taman Aster
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Notification Icon -->
+            <div class="notification-icon">
+                <img src="assets/icons/notifikasi.png" alt="Notification">
+            </div>
+            
+            <!-- Menu Title -->
+            <div class="menu-title">Menu Utama</div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Menu Card -->
+            <div class="menu-card">
+                <div class="menu-grid">
+                    <!-- Iuran -->
+                    <div class="menu-item">
+                        <div class="menu-icon">
+                            <img src="assets/icons/Group.png" alt="Iuran">
+                        </div>
+                        <div class="menu-label">Iuran</div>
+                    </div>
+                    
+                    <!-- Penerbitan Surat -->
+                    <div class="menu-item">
+                        <div class="menu-icon">
+                            <img src="assets/icons/surat.png" alt="Penerbitan Surat">
+                        </div>
+                        <div class="menu-label">Penerbitan Surat</div>
+                    </div>
+                    
+                    <!-- Voting -->
+                    <div class="menu-item">
+                        <div class="menu-icon">
+                            <img src="assets/icons/voting.png" alt="Voting">
+                        </div>
+                        <div class="menu-label">Voting</div>
+                    </div>
+                    
+                    <!-- CCTV -->
+                    <div class="menu-item">
+                        <div class="menu-icon">
+                            <img src="assets/icons/lucide_cctv.png" alt="CCTV">
+                        </div>
+                        <div class="menu-label">CCTV</div>
+                    </div>
+                    
+                    <!-- Lapor -->
+                    <div class="menu-item">
+                        <div class="menu-icon">
+                            <img src="assets/icons/toa.png" alt="Lapor">
+                        </div>
+                        <div class="menu-label">Lapor</div>
+                    </div>
+                    
+                    <!-- Kontak Darurat -->
+                    <div class="menu-item">
+                        <div class="menu-icon">
+                            <img src="assets/icons/ph_phone-call.png" alt="Kontak Darurat">
+                        </div>
+                        <div class="menu-label">Kontak Darurat</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Information Section -->
+            <div class="info-section">
+                <div class="info-header">
+                    <div class="info-title">Informasi</div>
+                    <div class="view-all">
+                        Lihat Semua
+                        <img src="assets/icons/panah.png" alt="Arrow Right">
+                    </div>
+                </div>
+                
+                <div class="info-cards-container">
+                    <div class="info-card">
+                        <img src="assets/images/gambar1.png" alt="Information Image">
+                        <div class="info-overlay">
+                            <div class="info-card-title">Rencana Agenda Perayaan HUT RI 2025</div>
+                            <div class="info-card-desc">Dalam rangka perayaan Hari Ulang Tahun Republik Indonesia (HUT RI) dengan berbagai kegiatan...</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Additional info cards for desktop view -->
+                    <div class="info-card desktop-only">
+                        <img src="assets/images/gambar1.png" alt="Information Image">
+                        <div class="info-overlay">
+                            <div class="info-card-title">Hasil Pemilihan Pengurus RT Periode 2025-2028</div>
+                            <div class="info-card-desc">Berikut adalah hasil pemilihan pengurus RT periode 2025-2028 yang telah dilaksanakan pada tanggal...</div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card desktop-only">
+                        <img src="assets/images/gambar1.png" alt="Information Image">
+                        <div class="info-overlay">
+                            <div class="info-card-title">Jadwal Pemeliharaan Taman Lingkungan</div>
+                            <div class="info-card-desc">Pengumuman tentang jadwal rutin pemeliharaan taman lingkungan dan area umum di perumahan kita...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <div class="nav-item nav-active">
+                <div class="nav-icon">
+                    <img src="assets/icons/beranda.png" alt="Home">
+                </div>
+                <div class="nav-label">Beranda</div>
+            </div>
+            
+            <div class="nav-item">
+                <div class="nav-icon">
+                    <img src="assets/icons/ri_megaphone-fill.png" alt="Info">
+                </div>
+                <div class="nav-label">Informasi</div>
+            </div>
+            
+            <div class="nav-item emergency-button-container">
+                <div class="emergency-button">
+                    <div class="emergency-icon">
+                        <img src="assets/icons/darurat.png" alt="Emergency">
+                    </div>
+                </div>
+                <div class="emergency-label">DARURAT</div>
+            </div>
+            
+            <div class="nav-item">
+                <div class="nav-icon">
+                    <img src="assets/icons/ion_calendar.png" alt="Agenda">
+                </div>
+                <div class="nav-label">Agenda</div>
+            </div>
+            
+            <div class="nav-item">
+                <div class="nav-icon">
+                    <img src="assets/icons/akun.png" alt="Account">
+                </div>
+                <div class="nav-label">Akun</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile detection
+        function isMobile() {
+            return window.innerWidth < 768;
+        }
+        
+        // Toggle sidebar on desktop
+        function toggleSidebar() {
+            document.body.classList.toggle('show-sidebar');
+        }
+        
+        // Hide desktop-only elements on mobile
+        function responsiveAdjustments() {
+            const desktopElements = document.querySelectorAll('.desktop-only');
+            
+            if (isMobile()) {
+                desktopElements.forEach(el => {
+                    el.style.display = 'none';
+                });
+            } else {
+                desktopElements.forEach(el => {
+                    el.style.display = 'block';
+                });
+            }
+        }
+        
+        // Run on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            responsiveAdjustments();
+            
+            // Check for screen resize
+            window.addEventListener('resize', responsiveAdjustments);
+        });
+    </script>
+</body>
+</html>
