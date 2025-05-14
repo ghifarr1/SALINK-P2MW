@@ -1,11 +1,140 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tombol Darurat</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Header Section -->
+  <div class="header">
+    <div class="header-background"></div>
+    <div class="header-gradient"></div>
     
+    <!-- Status Bar -->
+    <div class="status-bar">
+      <div class="status-time">9:41</div>
+      <div class="status-icons">
+        <!-- Signal and Battery Icons -->
+      </div>
+    </div>
+    
+    <!-- User Profile -->
+    <div class="user-profile">
+      <div class="profile-container">
+        <img src="/api/placeholder/84/84" alt="Profile Picture" class="profile-pic">
+        <div class="badge">
+          <span class="badge-green">G7</span>
+          <span class="badge-white">38</span>
+        </div>
+      </div>
+      
+      <div class="user-info">
+        <h2 class="user-name">Raditya</h2>
+        <div class="user-role">
+          <svg viewBox="0 0 15 15" class="icon-warga">
+            <path d="M14.06 10.31H0.94V2.34H14.06V10.31Z" fill="white"/>
+          </svg>
+          Warga
+        </div>
+        <div class="user-address">
+          <svg viewBox="0 0 15 15" class="icon-address">
+            <path d="M9.69 1.88H13.44V11.93H0.78V1.93L9.69 1.88Z" fill="white"/>
+          </svg>
+          RT 12 RW09 Perum Taman Aster
+        </div>
+      </div>
+    </div>
+    
+    <!-- Notification Icon -->
+    <div class="notification-icon">
+      <svg width="35" height="35" viewBox="0 0 35 35">
+        <path d="M26.27 30.62V2.19H4.36V30.62H26.27Z" fill="white"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <!-- Back Button -->
+    <button class="btn-back" onclick="history.back()">
+      <svg viewBox="0 0 24 24" class="icon-back">
+        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+      </svg>
+    </button>
+    
+    <h1 class="page-title">Tombol Darurat</h1>
+    
+    <!-- Emergency Buttons Grid -->
+    <div class="emergency-grid">
+      <!-- Pencurian Button -->
+      <div class="emergency-button" onclick="alert('Laporan Pencurian Dikirim')">
+        <div class="button-icon">
+          <img src="assets/icons/pencurian.svg" alt="Pencurian">
+        </div>
+        <span class="button-text">Pencurian</span>
+      </div>
+      
+      <!-- Kecelakaan Button -->
+      <div class="emergency-button" onclick="alert('Laporan Kecelakaan Dikirim')">
+        <div class="button-icon">
+          <img src="assets/icons/kecelakaan.svg" alt="Kecelakaan">
+        </div>
+        <span class="button-text">Kecelakaan</span>
+      </div>
+      
+      <!-- Kebakaran Button -->
+      <div class="emergency-button" onclick="alert('Laporan Kebakaran Dikirim')">
+        <div class="button-icon">
+          <img src="assets/icons/kebakaran.svg" alt="Kebakaran">
+        </div>
+        <span class="button-text">Kebakaran</span>
+      </div>
+      
+      <!-- Hewan Liar Button -->
+      <div class="emergency-button" onclick="alert('Laporan Hewan Liar Dikirim')">
+        <div class="button-icon">
+          <img src="assets/icons/hewan.svg" alt="Hewan Liar">
+        </div>
+        <span class="button-text">Hewan Liar</span>
+      </div>
+    </div>
+    
+    <!-- Other Danger Section -->
+    <div class="danger-section">
+      <h2 class="section-title">Bahaya Lainnya</h2>
+      <p class="section-description">Kirim pesan langsung ke pihak security</p>
+      
+      <div class="message-input">
+        <input type="text" placeholder="Ketik pesan..." class="text-input">
+        <button class="send-button" onclick="sendMessage()">
+          <svg viewBox="0 0 24 24" class="icon-send">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Footer Note -->
+    <p class="footer-note">
+      Gunakan tombol dengan bijak sesuai kebutuhan.<br>
+      Jangan lakukan inisiasi pengetesan tanpa permintaan<br>
+      dari pengembang aplikasi!
+    </p>
+  </div>
+  
+  <script>
+    function sendMessage() {
+      const message = document.querySelector('.text-input').value;
+      if (message) {
+        alert('Pesan terkirim ke pihak security: ' + message);
+        document.querySelector('.text-input').value = '';
+      } else {
+        alert('Tolong masukkan pesan terlebih dahulu!');
+      }
+    }
+  </script>
 </body>
 </html>
