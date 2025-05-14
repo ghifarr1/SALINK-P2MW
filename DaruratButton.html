@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tombol Darurat</title>
+  <link rel="stylesheet" href="style/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=Inter:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="emergency-container">
+
+  <!-- Header with Back Button -->
+  <div class="emergency-header">
+    <button class="back-button" onclick="history.back()" aria-label="Kembali">
+      <img src="assets/icons/back-icon.png" alt="Kembali">
+    </button>
+    <div class="emergency-title">Tombol Darurat</div>
+  </div>
+
+  <!-- Emergency Options -->
+  <div class="emergency-grid">
+    <div class="emergency-button-option">
+      <div class="emergency-icon-option">
+        <img src="assets/icons/pencurian.png" alt="Pencurian">
+      </div>
+      Pencurian
+    </div>
+    <div class="emergency-button-option">
+      <div class="emergency-icon-option">
+        <img src="assets/icons/kecelakaan.png" alt="Pencurian">
+      </div>
+      Kecelakaan
+    </div>
+    <div class="emergency-button-option">
+      <div class="emergency-icon-option">
+        <img src="assets/icons/kebakaran.png" alt="Pencurian">
+      </div>
+      Kebakaran
+    </div>
+    <div class="emergency-button-option">
+      <div class="emergency-icon-option">
+        <img src="assets/icons/hewan_liar.png" alt="Pencurian">
+      </div>
+      Hewan Liar
+    </div>
+  </div>
+
+  <!-- Other Danger Input -->
+  <div class="other-danger">
+    <strong>Bahaya Lainnya</strong><br/>
+    Kirim pesan langsung ke pihak security
+    <br>
+    <div class="input-with-icon">
+      <input type="text" placeholder="Ketik pesan...">
+      <img src="assets/icons/send-circle.png" alt="Kirim" class="send-icon" onclick="kirimPesan()">
+    </div>
+  </div>
+
+  <!-- Footer Note -->
+  <div class="footer-note">
+    Gunakan tombol dengan bijak sesuai kebutuhan.<br/>
+    Jangan lakukan inisiasi pengetesan tanpa permintaan dari pengembang aplikasi!
+  </div>
+
+</div>
+
+</body>
+</html>
