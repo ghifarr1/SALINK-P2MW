@@ -1,4 +1,7 @@
-
+/* 
+* RESET & BASE STYLES
+* Mempertahankan reset asli dan menyesuaikan font untuk tampilan yang konsisten
+*/
 * {
     margin: 0;
     padding: 0;
@@ -23,82 +26,115 @@ body {
     background-color: var(--background);
     color: var(--black);
     line-height: 1.5;
+    /* Maksimal width untuk mobile dibatasi */
+    max-width: 414px;
     margin: 0 auto;
     position: relative;
     overflow-x: hidden;
 }
 
+/* 
+* CONTAINER & LAYOUT
+* Container diatur untuk menampung semua elemen dan menyediakan padding-bottom untuk nav
+*/
 .container {
     margin: 0 auto;
     width: 100%;
     position: relative;
     min-height: 100vh;
-    padding-bottom: 70px; /* Space for bottom nav */
+    /* Ditambahkan padding bottom untuk mengakomodasi navbar di bawah */
+    padding-bottom: 70px;
 }
 
+/* 
+* HEADER SECTION - Update untuk background dinamis
+* Penyesuaian header dengan background dinamis yang dapat diubah melalui JavaScript
+*/
 .header {
     position: relative;
-    height: 190px;
-    overflow: hidden;
+    height: 290px;
     background-color: var(--primary-color);
+    
+    /* Lengkung halus di bagian bawah */
+    border-bottom-left-radius:50px;   /* sesuaikan angka untuk besar lengkungan */
+    border-bottom-right-radius: 50px;
+    overflow: hidden;
 }
 
+
+/* 
+* HEADER BACKGROUND - DINAMIS
+* Penyesuaian untuk menampilkan background dinamis di header
+*/
 .header-background {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(26, 148, 101, 0.62);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3; /* Opacity ditingkatkan dari 0.2 agar lebih terlihat */
     z-index: 1;
+    transition: background-image 1s ease; /* Transisi halus saat gambar berubah */
 }
+
 
 .header-gradient {
     position: absolute;
     width: 100%;
     height: 100%;
+    /* Ditambahkan gradient untuk efek lapisan atas background */
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.78) 100%);
     z-index: 2;
 }
-        
+
+/* 
+* USER PROFILE
+* Styling untuk profil user di header dengan badge dan informasi
+*/
 .user-profile {
     position: relative;
     z-index: 10;
     padding: 30px 20px 15px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 }
-        
+
 .profile-container {
     position: relative;
+    margin-right: 20px;
 }
-        
+
 .profile-pic {
     width: 84px;
     height: 84px;
     border-radius: 50%;
-    border: 4.42px solid #E9F4F0;
+    border: 4px solid #E9F4F0;
     object-fit: cover;
-    position: relative;
 }
-        
+
 .badge {
     position: absolute;
-    top: 0;
-    left: 74px;
+    top: 70px;
+    right: 15px;
     display: flex;
     background-color: var(--secondary-color);
     border-radius: 9.5px;
     padding: 2px;
-    width: 52px;
+    width: 55px;
     height: 19px;
 }
-        
+
 .badge-green {
     color: var(--white);
     font-size: 11px;
     font-weight: 700;
     padding: 0 5px;
+    display: flex;
+    align-items: center;
 }
-        
+
 .badge-white {
     background-color: var(--white);
     color: var(--primary-color);
@@ -106,21 +142,25 @@ body {
     font-weight: 700;
     border-radius: 9.5px;
     padding: 0 5px;
-    margin-left: 5px;
+    display: flex;
+    align-items: center;
 }
-        
+
 .user-info {
-    margin-left: 20px;
     color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-        
+
 .user-name {
     font-size: 19px;
     font-weight: 700;
     line-height: 26.6px;
+    margin: 0 0 5px 0;
 }
-        
-.user-role {
+
+.user-role, .user-address {
     font-size: 11px;
     font-weight: 400;
     line-height: 15.4px;
@@ -128,28 +168,18 @@ body {
     align-items: center;
     margin-top: 5px;
 }
-        
-.user-role img {
+
+.user-role img, .user-address img {
     margin-right: 5px;
     width: 15px;
     height: 15px;
+    object-fit: contain;
 }
-        
-.user-address {
-    font-size: 11px;
-    font-weight: 400;
-    line-height: 15.4px;
-    display: flex;
-    align-items: center;
-    margin-top: 5px;
-}
-        
-.user-address img {
-    margin-right: 5px;
-    width: 15px;
-    height: 15px;
-}
-        
+
+/* 
+* NOTIFICATION ICON
+* Penyesuaian ikon notifikasi di pojok kanan atas header
+*/
 .notification-icon {
     position: absolute;
     right: 20px;
@@ -158,11 +188,16 @@ body {
 }
 
 .notification-icon img {
-    width: 35px;
-    height: 35px;
+    width: 24px;
+    height: 24px;
+    /* Filter untuk mengubah warna icon menjadi putih */
     filter: brightness(0) invert(1);
 }
 
+/* 
+* MENU TITLE
+* Judul "Menu Utama" di bagian header
+*/
 .menu-title {
     color: var(--white);
     font-size: 16px;
@@ -171,14 +206,23 @@ body {
     position: relative;
     z-index: 10;
 }
-        
+
+/* 
+* MAIN CONTENT
+* Area konten utama dengan margin negatif untuk overlay dengan header
+*/
 .main-content {
     position: relative;
     z-index: 10;
-    margin-top: -20px;
+    /* Margin negatif untuk memberikan efek overlay dengan header */
+    margin-top: -110px;
     padding-bottom: 30px;
 }
-        
+
+/* 
+* MENU CARD
+* Card untuk menu utama dengan grid layout 3 kolom
+*/
 .menu-card {
     background-color: var(--white);
     border-radius: 11px;
@@ -186,14 +230,15 @@ body {
     margin: 0 20px;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
 }
-        
+
 .menu-grid {
     display: grid;
+    /* Grid 3 kolom untuk mobile */
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
     justify-items: center;
 }
-        
+
 .menu-item {
     display: flex;
     flex-direction: column;
@@ -202,15 +247,16 @@ body {
     cursor: pointer;
     transition: transform 0.2s;
 }
-        
+
 .menu-item:hover {
     transform: translateY(-5px);
 }
-        
+
 .menu-icon {
     width: 74px;
     height: 74px;
     border-radius: 17px;
+    /* Gradient background untuk menu icon */
     background: linear-gradient(180deg, #4FA986 31%, #239368 51%, #19684A 72%);
     display: flex;
     justify-content: center;
@@ -218,12 +264,12 @@ body {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
     margin-bottom: 6px;
 }
-        
+
 .menu-icon img {
     width: 50px;
     height: 50px;
 }
-        
+
 .menu-label {
     color: var(--black);
     font-size: 13px;
@@ -231,48 +277,57 @@ body {
     text-align: center;
     line-height: 18.2px;
 }
-        
+
+/* 
+* INFO SECTION
+* Section informasi dengan kartu berita/pengumuman
+*/
 .info-section {
     margin-top: 30px;
     padding: 0 20px;
 }
-        
+
 .info-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
 }
-        
+
 .info-title {
     color: var(--black);
     font-size: 16px;
     font-weight: 700;
     line-height: 22.4px;
 }
-        
+
 .view-all {
     display: flex;
-    align-items: center;
+    align-items: right;
     color: var(--primary-color);
     font-size: 16px;
     font-weight: 700;
     line-height: 22.4px;
     cursor: pointer;
 }
-        
+
 .view-all img {
     margin-left: 5px;
     width: 18px;
     height: 18px;
 }
-        
+
+/* 
+* INFO CARDS
+* Card informasi dengan layout column untuk mobile
+*/
 .info-cards-container {
     display: flex;
+    /* Untuk mobile, card disusun vertical */
     flex-direction: column;
     gap: 15px;
 }
-        
+
 .info-card {
     position: relative;
     width: 100%;
@@ -280,21 +335,22 @@ body {
     border-radius: 11px;
     overflow: hidden;
 }
-        
+
 .info-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-        
+
 .info-overlay {
     position: absolute;
     bottom: 0;
     width: 100%;
+    /* Gradient overlay untuk teks di atas gambar */
     background: linear-gradient(180deg, rgba(26, 148, 101, 0) 0%, #1A9465 100%);
     padding: 15px;
 }
-        
+
 .info-card-title {
     color: var(--white);
     font-size: 16px;
@@ -302,18 +358,23 @@ body {
     line-height: 22.4px;
     margin-bottom: 5px;
 }
-        
+
 .info-card-desc {
     color: var(--white);
     font-size: 11px;
     font-weight: 400;
     line-height: 15.4px;
 }
-        
+
+/* 
+* BOTTOM NAVIGATION
+* Navigation bar di bagian bawah layar - fixed untuk mobile
+*/
 .bottom-nav {
     position: fixed;
     bottom: 0;
     width: 100%;
+    max-width: 414px; /* Sesuai dengan max-width body untuk mobile */
     background-color: var(--white);
     display: flex;
     justify-content: space-around;
@@ -321,7 +382,7 @@ body {
     box-shadow: 0px 1px 4.2px rgba(0, 0, 0, 0.25);
     z-index: 100;
 }
-        
+
 .nav-item {
     display: flex;
     flex-direction: column;
@@ -330,7 +391,7 @@ body {
     width: 20%;
     cursor: pointer;
 }
-        
+
 .nav-icon {
     width: 35px;
     height: 35px;
@@ -338,12 +399,12 @@ body {
     justify-content: center;
     align-items: center;
 }
-        
+
 .nav-icon img {
     width: 24px;
     height: 24px;
 }
-        
+
 .nav-label {
     font-size: 11px;
     font-weight: 400;
@@ -351,29 +412,38 @@ body {
     text-align: center;
     color: var(--gray-color);
 }
-        
+
+/* 
+* ACTIVE NAVIGATION
+* Style untuk item navigasi yang aktif
+*/
 .nav-active .nav-icon img {
+    /* Filter untuk mengubah warna ikon menjadi warna primary */
     filter: invert(46%) sepia(71%) saturate(561%) hue-rotate(124deg) brightness(91%) contrast(88%);
 }
-        
+
 .nav-active .nav-label {
     color: var(--primary-color);
 }
 
-/* Emergency Button */
+/* 
+* EMERGENCY BUTTON
+* Tombol darurat yang menonjol di navbar bawah
+*/
 .emergency-button-container {
     position: relative;
     height: 55px;
 }
-        
+
 .emergency-button {
     position: absolute;
-    top: -30px;
+    top: -40px;
     left: 50%;
     transform: translateX(-50%);
     width: 72px;
     height: 72px;
     border-radius: 38.32px;
+    /* Gradient merah untuk tombol darurat */
     background: linear-gradient(0deg, #952728 26%, #BF3233 54%, #D23738 76%);
     display: flex;
     justify-content: center;
@@ -382,21 +452,21 @@ body {
     cursor: pointer;
     transition: transform 0.2s;
 }
-        
+
 .emergency-button:hover {
     transform: translateX(-50%) scale(1.05);
 }
-        
+
 .emergency-icon {
     width: 47.61px;
     height: 47.61px;
 }
-        
+
 .emergency-icon img {
     width: 100%;
     height: 100%;
 }
-        
+
 .emergency-label {
     color: var(--dark-gray);
     font-size: 11px;
@@ -405,7 +475,10 @@ body {
     margin-top: 30px;
 }
 
-/* Emergency Container */
+/* 
+* EMERGENCY MODAL CONTAINER
+* Container untuk modal darurat yang muncul dari bawah
+*/
 .emergency-container {
     background-color: #fff;
     border-radius: 20px 20px 0 0;
@@ -413,9 +486,14 @@ body {
     position: fixed;
     bottom: 0;
     width: 100%;
+    max-width: 414px; /* Sesuai dengan max-width body untuk mobile */
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* 
+* EMERGENCY MODAL HEADER
+* Header untuk modal darurat dengan tombol kembali
+*/
 .emergency-header {
     position: relative;
     display: flex;
@@ -424,7 +502,7 @@ body {
     padding: 0 16px;
     border-bottom: 1px solid #ccc;
     background-color: #fff;
-}  /* tempat untuk menampung bagian header */
+}
 
 .back-button {
     background: none;
@@ -434,7 +512,7 @@ body {
     display: flex;
     align-items: center;
     height: 100%;
-}   /* back button pada header */
+}
 
 .emergency-title {
     position: absolute;
@@ -445,16 +523,21 @@ body {
     font-weight: 700;
     z-index: 1;
     white-space: nowrap;
-}   /* title */
+}
 
+/* 
+* EMERGENCY GRID
+* Grid untuk pilihan darurat dengan 2 kolom
+*/
 .emergency-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
     justify-items: center;
+    margin-top: 20px; /* Ditambahkan margin untuk spacing yang lebih baik */
 }
 
-.emergency-button-option { 
+.emergency-button-option {
     background: linear-gradient(to bottom, #e53935, #b71c1c);
     border-radius: 16px;
     width: 100%;
@@ -466,16 +549,27 @@ body {
     font-weight: 700;
     line-height: 18.20px;
     box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-}   /* emergency-button-option digunakan untuk opsi emergency button seperti kebakaran, pencurian, dll */
+    cursor: pointer; /* Ditambahkan cursor pointer untuk UX yang lebih baik */
+    transition: transform 0.2s ease; /* Transisi untuk efek hover */
+}
+
+/* Ditambahkan efek hover untuk feedback visual */
+.emergency-button-option:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
 
 .emergency-icon-option img {
     width: 70px;
     height: 70px;
     object-fit: contain;
     margin-top: 13px;
-    /* margin-bottom: 2px; */
-}   /* icon pada emergency-button-option */
+}
 
+/* 
+* OTHER DANGER SECTION
+* Section input bahaya lainnya dalam modal darurat
+*/
 .other-danger {
     background-color: #e53935;
     border-radius: 16px;
@@ -484,7 +578,7 @@ body {
     margin-top: 24px;
     text-align: center;
     font-size: 13px;
-}   /* section / bagian bahaya lainnya */
+}
 
 .other-danger input {
     margin-top: 12px;
@@ -492,33 +586,56 @@ body {
     width: 90%;
     border: none;
     border-radius: 10px;
-}   /* bagian input */
+}
 
+/* 
+* INPUT WITH ICON
+* Input field dengan ikon kirim di dalamnya
+*/
 .input-with-icon {
     position: relative;
     width: 100%;
+    margin-top: 10px; /* Ditambahkan margin untuk spacing yang lebih baik */
 }
 
 .input-with-icon input {
     width: 100%;
-    padding: 10px 40px 10px 12px; /* ruang kanan untuk icon */
+    padding: 10px 40px 10px 12px; /* Ruang di kanan untuk icon */
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 14px;
-    line-height: 1; 
+    line-height: 1;
+}
+
+/* Ditambahkan placeholder style untuk konsistensi UI */
+.input-with-icon input::placeholder {
+    color: #999;
+    font-size: 13px;
+}
+
+/* Ditambahkan style untuk send-button */
+.send-button {
+    position: absolute;
+    right: 8px;
+    top: 65%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
 }
 
 .input-with-icon .send-icon {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-20%);
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     cursor: pointer;
 }
 
+/* 
+* FOOTER NOTE
+* Catatan di footer modal darurat
+*/
 .footer-note {
     font-size: 11px;
     font-weight: 700;
@@ -527,143 +644,174 @@ body {
     margin-top: 18px;
 }
 
-/* Modal (Popup) Style */
+/* 
+* MODAL STYLES
+* Style untuk modal popup yang menampilkan tombol darurat
+*/
 .modal {
     display: none; /* Hidden by default */
-    position: fixed; /* Fixed position */
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100vw; /* Gunakan viewport width */
-    height: 100vh; /* Gunakan viewport height */
+    /* Width dan height menggunakan viewport untuk full coverage */
+    width: 100%; 
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    z-index: 9999; /* Ensure modal is on top */
+    z-index: 9999; /* Pastikan modal di atas semua elemen */
     align-items: center;
     justify-content: center;
     transition: opacity 0.3s ease;
     overflow-y: auto; /* Allow scrolling if modal is too tall */
 }
 
-/* Untuk menampilkan modal */
+/* Kelas untuk menampilkan modal */
 .modal.show {
     display: flex;
-    align-items: flex-start; /* Ubah ke flex-start untuk menghindari centering yang membuat kelihatan aneh di browser */
+    align-items: flex-end; /* Mengubah ke flex-end agar modal muncul dari bawah */
     justify-content: center;
-    padding-top: 30px;
 }
 
 .modal-content {
-    border: 2px solid #D23738; /* Berikan border yang jelas */
-    box-shadow: 0 8px 25px rgba(0,0,0,0.3); /* Shadow lebih kuat */
+    width: 100%;
+    max-width: 414px; /* Sesuai dengan max-width body untuk mobile */
+    animation: slideUp 0.3s ease; /* Animasi slide dari bawah */
 }
 
-/* Responsive adjustments */
-@media (max-width: 600px) {
-    .modal-content {
-        width: 100%;
-        /* margin: 10px auto; */
+/* Animasi slide up untuk modal */
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
     }
 }
 
-/* Responsive design for larger screens */
+/* 
+* RESPONSIVE DESIGN
+* Media query untuk layar yang lebih besar
+*/
 @media (min-width: 768px) {
+    body {
+        max-width: none;
+    }
+    
     .container {
         display: flex;
         flex-direction: column;
         max-width: 1200px;
         padding-bottom: 0;
     }
-            
+    
     .header {
         height: 240px;
         border-radius: 0 0 20px 20px;
     }
-            
+    
     .main-content {
         display: flex;
         flex-direction: column;
         align-items: center;
         margin-top: -40px;
     }
-            
+    
     .menu-card {
         width: 90%;
         max-width: 900px;
         padding: 30px;
         margin: 0 auto;
     }
-            
+    
     .menu-grid {
         grid-template-columns: repeat(6, 1fr);
         gap: 25px;
     }
-            
+    
     .info-section {
         width: 90%;
         max-width: 900px;
         margin: 40px auto 0;
         padding: 0;
     }
-            
+    
     .info-cards-container {
         flex-direction: row;
         flex-wrap: wrap;
         gap: 20px;
     }
-            
+    
     .info-card {
         width: calc(50% - 10px);
         height: 230px;
     }
-            
+    
+    /* Mengubah bottom-nav menjadi relative untuk desktop */
     .bottom-nav {
         position: relative;
+        max-width: none;
         margin-top: 60px;
         border-radius: 20px 20px 0 0;
         padding: 15px 0;
     }
-            
+    
     .emergency-button-container {
         height: 75px;
     }
-            
+    
     .emergency-button {
         top: -40px;
         width: 82px;
         height: 82px;
     }
-            
+    
     .emergency-label {
         margin-top: 35px;
     }
+
+    /* Modal konten untuk desktop */
+    .modal-content {
+        max-width: 500px;
+    }
+
+    /* Emergency container untuk desktop */
+    .emergency-container {
+        max-width: 500px;
+        border-radius: 20px;
+    }
 }
-        
+
+/* 
+* WIDER SCREENS
+* Media query untuk layar lebih lebar (1024px+)
+*/
 @media (min-width: 1024px) {
     .menu-grid {
         grid-template-columns: repeat(6, 1fr);
     }
-            
+    
     .menu-item {
         width: 100px;
     }
-            
+    
     .menu-icon {
         width: 90px;
         height: 90px;
     }
-            
+    
     .menu-icon img {
         width: 60px;
         height: 60px;
     }
-            
+    
     .menu-label {
         font-size: 14px;
     }
-            
+    
     .info-card {
         width: calc(33.33% - 14px);
     }
-            
+    
+    /* Menampilkan desktop sidebar */
     .desktop-sidebar {
         display: block;
         position: fixed;
@@ -678,11 +826,12 @@ body {
         transform: translateX(-100%);
         transition: transform 0.3s ease;
     }
-            
+    
     .show-sidebar .desktop-sidebar {
         transform: translateX(0);
     }
-            
+    
+    /* Toggle sidebar untuk desktop */
     .sidebar-toggle {
         display: block;
         position: fixed;
@@ -694,12 +843,13 @@ body {
         border-radius: 50%;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         cursor: pointer;
         z-index: 151;
     }
-            
+    
     .sidebar-toggle div {
         width: 20px;
         height: 3px;
@@ -708,24 +858,31 @@ body {
         border-radius: 3px;
     }
 }
-        
-/* Mobile-only styles to match the image exactly */
+
+/* 
+* MOBILE-SPECIFIC STYLES
+* Style khusus untuk mobile (≤ 767px)
+*/
 @media (max-width: 767px) {
-    body {
-        max-width: 414px;
-        margin: 0 auto;
-    }
-            
+    /* Menyembunyikan sidebar di mobile */
     .desktop-sidebar, .sidebar-toggle {
         display: none;
     }
+    
+    /* Menyembunyikan info cards yang hanya untuk desktop */
+    .desktop-only {
+        display: none !important;
+    }
 }
-        
-/* Desktop sidebar */
+
+/* 
+* DESKTOP SIDEBAR
+* Styling untuk sidebar di desktop
+*/
 .desktop-sidebar {
-    display: none;
+    display: none; /* Default-nya disembunyikan */
 }
-        
+
 .sidebar-header {
     display: flex;
     align-items: center;
@@ -733,13 +890,13 @@ body {
     border-bottom: 1px solid #eee;
     margin-bottom: 20px;
 }
-        
+
 .sidebar-header .logo {
     color: var(--primary-color);
     font-size: 20px;
     font-weight: 800;
 }
-        
+
 .sidebar-menu-item {
     display: flex;
     align-items: center;
@@ -749,27 +906,186 @@ body {
     cursor: pointer;
     transition: background-color 0.2s;
 }
-        
+
 .sidebar-menu-item:hover {
     background-color: rgba(26, 148, 101, 0.1);
 }
-        
+
 .sidebar-menu-item.active {
     background-color: var(--primary-color);
     color: var(--white);
 }
-        
+
 .sidebar-menu-item .icon {
     margin-right: 15px;
     width: 20px;
     height: 20px;
 }
-        
+
 .sidebar-menu-item .label {
     font-size: 14px;
     font-weight: 600;
 }
-        
+
 .sidebar-menu-item.active .icon img {
     filter: brightness(0) invert(1);
+}
+
+/* 
+* EMERGENCY ITEM STYLING
+* Styling khusus untuk menu item darurat di sidebar
+*/
+.sidebar-menu-item.emergency-item {
+    background-color: var(--emergency-red);
+    color: var(--white);
+}
+
+.sidebar-menu-item.emergency-item .icon img {
+    filter: brightness(0) invert(1);
+}
+
+/* 
+* CAROUSEL STYLES
+* Styling untuk implementasi carousel di bagian informasi
+*/
+.carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-container {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s ease;
+}
+
+.carousel-slide {
+    min-width: 100%; /* Setiap slide menempati seluruh lebar container */
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Navigasi dot untuk carousel */
+.carousel-navigation {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--gray-color);
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.carousel-dot.active {
+    background-color: var(--primary-color);
+    transform: scale(1.2);
+}
+
+/* Arrow navigasi carousel */
+.carousel-arrows {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    z-index: 20;
+}
+
+.carousel-arrow {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.carousel-arrow:hover {
+    background-color: var(--white);
+    transform: scale(1.1);
+}
+
+.carousel-arrow.prev {
+    margin-left: 10px;
+}
+
+.carousel-arrow.next {
+    margin-right: 10px;
+}
+
+/* Optimasi untuk touch devices */
+@media (max-width: 767px) {
+    /* Menyembunyikan arrows pada mobile untuk UI yang lebih bersih */
+    .carousel-arrows {
+        display: none;
+    }
+    
+    /* Pada mobile, perbesar ukuran dot untuk kemudahan tap */
+    .carousel-dot {
+        width: 12px;
+        height: 12px;
+        margin: 0 8px;
+    }
+    
+    /* Info cards tidak perlu flex-direction column lagi karena carousel */
+    .info-cards-container {
+        display: block; /* Override flex column settings */
+        width: 100%;
+        position: relative;
+    }
+    
+    .info-card {
+        margin-bottom: 0; /* Hapus margin bottom karena cards ditampilkan satu per satu */
+    }
+}
+
+/* Untuk desktop view - carousel masih dipertahankan tapi dengan styling berbeda */
+@media (min-width: 768px) {
+    .carousel-container {
+        overflow: visible; /* Perbolehkan slides terlihat di desktop */
+    }
+    
+    /* Pada desktop view, tetap pertahankan ukuran card yang cukup besar */
+    .info-card {
+        height: 200px;
+    }
+    
+    /* Perbesar dot pada desktop untuk visibilitas lebih baik */
+    .carousel-dot {
+        width: 12px;
+        height: 12px;
+    }
+    
+    /* Perbesar arrow untuk kemudahan klik di desktop */
+    .carousel-arrow {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
+}
+
+/* Modifikasi info-cards-container existing untuk mendukung carousel */
+.info-cards-container {
+    /* Mengganti display flex column menjadi block untuk carousel */
+    display: block;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
 }

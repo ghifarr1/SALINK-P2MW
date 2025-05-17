@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <!-- Viewport meta tag dengan initial-scale=1.0 untuk tampilan mobile yang tepat -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Lingkungan</title>
+    <link rel="stylesheet" href="style/style.css">
+    <!-- Penggunaan font Plus Jakarta Sans sesuai dengan desain Indonesia -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Mobile Sidebar Toggle - disembunyikan di tampilan default mobile untuk menyederhanakan UI -->
+        <div class="sidebar-toggle" onclick="toggleSidebar()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        
+        <!-- Desktop Sidebar - tersembunyi di mobile -->
+        <div class="desktop-sidebar">
+            <div class="sidebar-header">
+                <div class="logo">Aplikasi Lingkungan</div>
+            </div>
+            <nav class="sidebar-menu">
+                <!-- Penambahan semantik <nav> untuk aksesibilitas yang lebih baik -->
+                <div class="sidebar-menu-item active">
+                    <div class="icon"><img src="./assets/icons/beranda.png" alt="Home"></div>
+                    <div class="label">Beranda</div>
+                </div>
+                <div class="sidebar-menu-item">
+                    <div class="icon"><img src="./assets/icons/ri_megaphone-fill.png" alt="Info"></div>
+                    <div class="label">Informasi</div>
+                </div>
+                <div class="sidebar-menu-item">
+                    <div class="icon"><img src="./assets/icons/Group.png" alt="Iuran"></div>
+                    <div class="label">Iuran</div>
+                </div>
+                <div class="sidebar-menu-item">
+                    <div class="icon"><img src="./assets/icons/surat.png" alt="Surat"></div>
+                    <div class="label">Penerbitan Surat</div>
+                </div>
+                <div class="sidebar-menu-item">
+                    <div class="icon"><img src="./assets/icons/voting.png" alt="Voting"></div>
+                    <div class="label">Voting</div>
+                </div>
+                <div class="sidebar-menu-item">
+                    <div class="icon"><img src="./assets/icons/lucide_cctv.png" alt="CCTV"></div>
+                    <div class="label">CCTV</div>
+                </div>
+                <div class="sidebar-menu-item">
+                    <div class="icon"><img src="./assets/icons/toa.png" alt="Lapor"></div>
+                    <div class="label">Lapor</div>
+                </div>
+                <div class="sidebar-menu-item">
+                    <div class="icon"><img src="./assets/icons/ph_phone-call.png" alt="Kontak"></div>
+                    <div class="label">Kontak Darurat</div>
+                </div>
+                <div class="sidebar-menu-item">
+                    <div class="icon"><img src="./assets/icons/ion_calendar.png" alt="Agenda"></div>
+                    <div class="label">Agenda</div>
+                </div>
+                <div class="sidebar-menu-item">
+                    <div class="icon"><img src="./assets/icons/akun.png" alt="Akun"></div>
+                    <div class="label">Akun</div>
+                </div>
+                <div class="sidebar-menu-item emergency-item">
+                    <div class="icon"><img src="./assets/icons/darurat.png" alt="Emergency"></div>
+                    <div class="label">DARURAT</div>
+                </div>
+            </nav>
+        </div>
+        
+        <!-- Header Section - dioptimalkan untuk mobile dengan ruang yang lebih ergonomis -->
+        <header class="header">
+            <div class="header-background" id="dynamicBackground"></div>
+            <div class="header-gradient"></div>
+            
+            <!-- User Profile - layout dioptimalkan untuk tampilan mobile -->
+            <div class="user-profile">
+                <div class="profile-container">
+                    <img src="assets/images/profile1.jpg" alt="Profile Picture" class="profile-pic">
+                    <div class="badge">
+                        <span class="badge-green">G7</span>
+                        <span class="badge-white">38</span>
+                    </div>
+                </div>
+                
+                <div class="user-info">
+                    <h2 class="user-name">Raditya</h2>
+                    <div class="user-role">
+                        <img src="assets/icons/warga.png" alt="Role Icon">
+                        Warga
+                    </div>
+                    <div class="user-address">
+                        <img src="assets/icons/warga.png" alt="Address Icon">
+                        RT 12 RW09 Perum Taman Aster
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Notification Icon - posisi sudah optimal untuk mobile -->
+            <div class="notification-icon">
+                <img src="assets/icons/notifikasi.png" alt="Notification">
+            </div>
+            
+            <!-- Menu Title - jelas dan menonjol -->
+            <div class="menu-title">Menu Utama</div>
+        </header>
+        
+        <!-- Main Content - layout dioptimalkan untuk mobile -->
+        <main class="main-content">
+            <!-- Menu Card - grid 3x2 optimal untuk layar mobile -->
+            <div class="menu-card">
+                <div class="menu-grid">
+                    <!-- Iuran -->
+                    <div class="menu-item">
+                        <div class="menu-icon">
+                            <img src="assets/icons/Group.png" alt="Iuran">
+                        </div>
+                        <div class="menu-label">Iuran</div>
+                    </div>
+                    
+                    <!-- Penerbitan Surat -->
+                    <div class="menu-item">
+                        <div class="menu-icon">
+                            <img src="assets/icons/surat.png" alt="Penerbitan Surat">
+                        </div>
+                        <div class="menu-label">Penerbitan Surat</div>
+                    </div>
+                    
+                    <!-- Voting -->
+                    <div class="menu-item">
+                        <div class="menu-icon">
+                            <img src="assets/icons/voting.png" alt="Voting">
+                        </div>
+                        <div class="menu-label">Voting</div>
+                    </div>
+                    
+                    <!-- CCTV -->
+                    <div class="menu-item">
+                        <div class="menu-icon">
+                            <img src="assets/icons/lucide_cctv.png" alt="CCTV">
+                        </div>
+                        <div class="menu-label">CCTV</div>
+                    </div>
+                    
+                    <!-- Lapor -->
+                    <div class="menu-item">
+                        <div class="menu-icon">
+                            <img src="assets/icons/toa.png" alt="Lapor">
+                        </div>
+                        <div class="menu-label">Lapor</div>
+                    </div>
+                    
+                    <!-- Kontak Darurat -->
+                    <div class="menu-item">
+                        <div class="menu-icon">
+                            <img src="assets/icons/ph_phone-call.png" alt="Kontak Darurat">
+                        </div>
+                        <div class="menu-label">Kontak Darurat</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Information Section - dioptimalkan dengan card yang lebih terbaca di mobile -->
+            <section class="info-section">
+                <div class="info-header">
+                    <!-- Bagian ini perlu ditambahkan di dalam section info-section, tepat setelah div info-header -->
+                    <h3 class="info-title">Informasi</h3>
+                    <div class="view-all">
+                        Lihat Semua
+                        <img src="assets/icons/panah.png" alt="Arrow Right">
+                    </div>
+                </div>
+                <div class="info-cards-container carousel">
+                    <div class="carousel-container">
+                        <!-- Card informatif dioptimalkan untuk mobile -->
+                        <div class="info-card carousel-slide">
+                            <img src="assets/images/gambar1.png" alt="Information Image">
+                            <div class="info-overlay">
+                                <div class="info-card-title">Rencana Agenda Perayaan HUT RI 2025</div>
+                                <div class="info-card-desc">Dalam rangka perayaan Hari Ulang Tahun Republik Indonesia (HUT RI) dengan berbagai kegiatan...</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide kedua untuk carousel -->
+                        <div class="info-card carousel-slide">
+                            <img src="assets/images/gambar2.jpg" alt="Information Image">
+                            <div class="info-overlay">
+                                <div class="info-card-title">Hasil Pemilihan Pengurus RT Periode 2025-2028</div>
+                                <div class="info-card-desc">Berikut adalah hasil pemilihan pengurus RT periode 2025-2028 yang telah dilaksanakan pada tanggal...</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide ketiga untuk carousel -->
+                        <div class="info-card carousel-slide">
+                            <img src="assets/images/perumahan.jpeg" alt="Information Image">
+                            <div class="info-overlay">
+                                <div class="info-card-title">Jadwal Pemeliharaan Taman Lingkungan</div>
+                                <div class="info-card-desc">Pengumuman tentang jadwal rutin pemeliharaan taman lingkungan dan area umum di perumahan kita...</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigasi carousel -->
+                    <div class="carousel-navigation">
+                        <span class="carousel-dot active" data-index="0"></span>
+                        <span class="carousel-dot" data-index="1"></span>
+                        <span class="carousel-dot" data-index="2"></span>
+                    </div>
+                    
+                    <!-- Arrow navigasi carousel -->
+                    <div class="carousel-arrows">
+                        <div class="carousel-arrow prev">&#10094;</div>
+                        <div class="carousel-arrow next">&#10095;</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Bottom Navigation - dioptimalkan untuk jempol di mobile -->
+        <nav class="bottom-nav">
+            <div class="nav-item nav-active">
+                <div class="nav-icon">
+                    <img src="assets/icons/beranda.png" alt="Home">
+                </div>
+                <div class="nav-label">Beranda</div>
+            </div>
+            
+            <div class="nav-item">
+                <div class="nav-icon">
+                    <img src="assets/icons/ri_megaphone-fill.png" alt="Info">
+                </div>
+                <div class="nav-label">Informasi</div>
+            </div>
+            
+            <div class="nav-item emergency-button-container">
+                <!-- Tombol darurat dioptimalkan ukurannya untuk kenyamanan tap -->
+                <div class="emergency-button" id="openModalButton">
+                    <div class="emergency-icon">
+                        <img src="assets/icons/darurat.png" alt="Emergency">
+                    </div>
+                </div>
+                <div class="emergency-label">DARURAT</div>
+            </div>
+            
+            <div class="nav-item">
+                <div class="nav-icon">
+                    <img src="assets/icons/ion_calendar.png" alt="Agenda">
+                </div>
+                <div class="nav-label">Agenda</div>
+            </div>
+            
+            <div class="nav-item">
+                <div class="nav-icon">
+                    <img src="assets/icons/akun.png" alt="Account">
+                </div>
+                <div class="nav-label">Akun</div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Modal untuk Tombol Darurat - animasi dioptimalkan untuk mobile -->
+    <div id="modalEmergency" class="modal">
+        <div class="modal-content">
+            <!-- Konten modal emergency dioptimalkan untuk mobile -->
+            <div class="emergency-container">
+                <!-- Header with Back Button - lebih terlihat untuk tap -->
+                <div class="emergency-header">
+                    <button class="back-button" id="closeModalButton" aria-label="Tutup Modal">
+                    <img src="assets/icons/back-icon.png" alt="Kembali">
+                    </button>
+                    <div class="emergency-title">Tombol Darurat</div>
+                </div>
+
+                <!-- Emergency Options - grid dioptimalkan untuk mobile -->
+                <div class="emergency-grid">
+                    <div class="emergency-button-option">
+                    <div class="emergency-icon-option">
+                        <img src="assets/icons/pencurian.png" alt="Pencurian">
+                    </div>
+                    Pencurian
+                    </div>
+                    <div class="emergency-button-option">
+                    <div class="emergency-icon-option">
+                        <img src="assets/icons/kecelakaan.png" alt="Kecelakaan">
+                    </div>
+                    Kecelakaan
+                    </div>
+                    <div class="emergency-button-option">
+                    <div class="emergency-icon-option">
+                        <img src="assets/icons/kebakaran.png" alt="Kebakaran">
+                    </div>
+                    Kebakaran
+                    </div>
+                    <div class="emergency-button-option">
+                    <div class="emergency-icon-option">
+                        <img src="assets/icons/hewan_liar.png" alt="Hewan Liar">
+                    </div>
+                    Hewan Liar
+                    </div>
+                </div>
+
+                <!-- Other Danger Input - input field dioptimalkan untuk ketik di mobile -->
+                <div class="other-danger">
+                    <strong>Bahaya Lainnya</strong><br/>
+                    Kirim pesan langsung ke pihak security
+                    <div class="input-with-icon">
+                    <input type="text" placeholder="Ketik pesan..." aria-label="Pesan darurat lainnya">
+                    <button class="send-button" onclick="kirimPesan()" aria-label="Kirim pesan">
+                        <img src="assets/icons/send-circle.png" alt="Kirim" class="send-icon">
+                    </button>
+                    </div>
+                </div>
+
+                <!-- Footer Note - peringatan lebih jelas -->
+                <div class="footer-note">
+                    Gunakan tombol dengan bijak sesuai kebutuhan.<br/>
+                    Jangan lakukan inisiasi pengetesan tanpa permintaan dari pengembang aplikasi!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Deteksi layar mobile yang lebih akurat
+        function isMobile() {
+            return window.innerWidth < 768;
+        }
+        
+        // Toggle sidebar dengan animasi yang lebih halus
+        function toggleSidebar() {
+            document.body.classList.toggle('show-sidebar');
+        }
+        
+        // Pengaturan tampilan berdasarkan ukuran layar yang lebih responsif
+        function responsiveAdjustments() {
+            const desktopElements = document.querySelectorAll('.desktop-only');
+            
+            if (isMobile()) {
+                desktopElements.forEach(el => {
+                    el.style.display = 'none';
+                });
+            } else {
+                desktopElements.forEach(el => {
+                    el.style.display = 'block';
+                });
+            }
+        }
+        
+        // Event listener optimasi untuk performa mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            responsiveAdjustments();
+            
+            // Optimasi event listener untuk resize dengan throttling
+            let resizeTimer;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(responsiveAdjustments, 250);
+            });
+        });
+
+        // Fungsi untuk modal darurat - dioptimalkan untuk performa mobile
+        const modal = document.querySelector('#modalEmergency');
+        const openModalButton = document.querySelector('#openModalButton');
+        const closeModalButton = document.querySelector('#closeModalButton');
+
+        // Tambahan error handling untuk pengalaman mobile yang lebih baik
+        if (openModalButton) {
+            openModalButton.addEventListener('click', () => {
+                modal.classList.add('show');
+                // Mencegah scroll pada background saat modal terbuka
+                document.body.style.overflow = 'hidden';
+            });
+        }
+
+        if (closeModalButton) {
+            closeModalButton.addEventListener('click', () => {
+                modal.classList.remove('show');
+                // Mengaktifkan kembali scroll saat modal ditutup
+                document.body.style.overflow = '';
+            });
+        }
+
+        // Menutup modal jika klik di luar modal - tetap dipertahankan untuk UX yang lebih baik
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Placeholder untuk fungsi kirim pesan
+        function kirimPesan() {
+            const input = document.querySelector('.input-with-icon input');
+            if (input && input.value.trim() !== '') {
+                alert('Pesan darurat dikirim: ' + input.value);
+                input.value = '';
+            } else {
+                alert('Silakan ketik pesan terlebih dahulu');
+            }
+        }
+
+        // Menambahkan background dinamis ke header
+        document.addEventListener('DOMContentLoaded', function() {
+            // Array gambar untuk background header (contoh paths)
+            const backgroundImages = [
+                'assets/images/perumahan.jpeg',
+            ];
+            
+            // Set background awal
+            const dynamicBackground = document.getElementById('dynamicBackground');
+            if (dynamicBackground) {
+                dynamicBackground.style.backgroundImage = `url('${backgroundImages[0]}')`;
+                
+                // Mengubah background secara periodik (opsional)
+                let currentBgIndex = 0;
+                setInterval(() => {
+                    currentBgIndex = (currentBgIndex + 1) % backgroundImages.length;
+                    dynamicBackground.style.backgroundImage = `url('${backgroundImages[currentBgIndex]}')`;
+                }, 10000); // Ganti setiap 10 detik
+            }
+            
+            // Inisialisasi carousel
+            initCarousel();
+            
+            // Fungsi responsive tetap dipertahankan
+            responsiveAdjustments();
+            
+            // Optimasi event listener untuk resize dengan throttling
+            let resizeTimer;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(responsiveAdjustments, 250);
+            });
+        });
+        
+        // Fungsi untuk carousel
+        function initCarousel() {
+            const carouselContainer = document.querySelector('.carousel-container');
+            const carouselSlides = document.querySelectorAll('.carousel-slide');
+            const carouselDots = document.querySelectorAll('.carousel-dot');
+            const prevArrow = document.querySelector('.carousel-arrow.prev');
+            const nextArrow = document.querySelector('.carousel-arrow.next');
+            let currentSlide = 0;
+            let startX, moveX;
+            
+            // Auto rotate carousel
+            let carouselInterval = setInterval(nextSlide, 5000);
+            
+            // Fungsi untuk menampilkan slide tertentu
+            function showSlide(index) {
+                // Reset interval untuk mencegah slide berubah terlalu cepat setelah interaksi manual
+                clearInterval(carouselInterval);
+                carouselInterval = setInterval(nextSlide, 5000);
+                
+                // Validasi index
+                if (index >= carouselSlides.length) {
+                    currentSlide = 0;
+                } else if (index < 0) {
+                    currentSlide = carouselSlides.length - 1;
+                } else {
+                    currentSlide = index;
+                }
+                
+                // Menggeser ke slide yang aktif
+                if (carouselContainer) {
+                    carouselContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+                }
+                
+                // Update dot yang aktif
+                carouselDots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentSlide);
+                });
+            }
+            
+            // Fungsi untuk slide berikutnya
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+            
+            // Fungsi untuk slide sebelumnya
+            function prevSlide() {
+                showSlide(currentSlide - 1);
+            }
+            
+            // Event listeners untuk navigasi dot
+            carouselDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    showSlide(index);
+                });
+            });
+            
+            // Event listeners untuk arrow
+            if (prevArrow) prevArrow.addEventListener('click', prevSlide);
+            if (nextArrow) nextArrow.addEventListener('click', nextSlide);
+            
+            // Touch events untuk swipe di mobile
+            if (carouselContainer) {
+                carouselContainer.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                    // Hentikan animasi selama swipe
+                    carouselContainer.style.transition = 'none';
+                }, { passive: true });
+                
+                carouselContainer.addEventListener('touchmove', (e) => {
+                    if (!startX) return;
+                    
+                    moveX = e.touches[0].clientX;
+                    const diff = moveX - startX;
+                    const offset = (diff / window.innerWidth) * 100;
+                    
+                    // Batas pergeseran selama swipe
+                    if (Math.abs(offset) < 50) {
+                        carouselContainer.style.transform = `translateX(calc(-${currentSlide * 100}% + ${offset}px))`;
+                    }
+                }, { passive: true });
+                
+                carouselContainer.addEventListener('touchend', (e) => {
+                    carouselContainer.style.transition = 'transform 0.5s ease';
+                    
+                    if (!startX || !moveX) return;
+                    
+                    const diff = moveX - startX;
+                    // Swipe kanan (prev) atau kiri (next)
+                    if (diff > 50) {
+                        prevSlide();
+                    } else if (diff < -50) {
+                        nextSlide();
+                    } else {
+                        // Kembali ke posisi slide saat ini jika swipe tidak cukup jauh
+                        showSlide(currentSlide);
+                    }
+                    
+                    // Reset nilai
+                    startX = null;
+                    moveX = null;
+                }, { passive: true });
+            }
+            
+            // Tampilkan slide pertama
+            showSlide(0);
+        }
+    </script>
+</body>
+</html>
