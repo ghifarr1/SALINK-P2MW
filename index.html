@@ -324,6 +324,61 @@
         </div>
     </div>
 
+    <!-- 1. HTML Snippet - Letakkan sebelum tag </body> -->
+    <div id="emergencyConfirmationPopup" class="emergency-popup">
+    <div class="emergency-popup-content">
+        <h2 class="emergency-popup-title">Pesan Darurat Terkirim</h2>
+        
+        <!-- Card Peringatan dengan ikon segitiga kuning -->
+        <div class="emergency-alert-card">
+        <div class="emergency-alert-icon">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 4L44 40H4L24 4Z" fill="#FFCA28"/>
+            <path d="M24 34C25.1 34 26 33.1 26 32V20C26 18.9 25.1 18 24 18C22.9 18 22 18.9 22 20V32C22 33.1 22.9 34 24 34Z" fill="#212121"/>
+            <path d="M24 38C25.1 38 26 37.1 26 36C26 34.9 25.1 34 24 34C22.9 34 22 34.9 22 36C22 37.1 22.9 38 24 38Z" fill="#212121"/>
+            </svg>
+        </div>
+        <p class="emergency-alert-text">
+            Petugas keamanan telah menerima pesan darurat yang anda kirim
+        </p>
+        </div>
+        
+        <!-- Perbaikan HTML untuk Card Kontak Darurat -->
+        <div class="emergency-contact-card">
+        <div class="emergency-contact-icon">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="48" height="48" rx="10" fill="#D32F2F"/>
+            <path d="M32 24.92V30C32 30.5304 31.7893 31.0391 31.4142 31.4142C31.0391 31.7893 30.5304 32 30 32C24.4913 32 19.1673 29.8393 15.1673 25.8393C11.1673 21.8393 9 16.5087 9 11C9 10.4696 9.21071 9.96086 9.58579 9.58579C9.96086 9.21071 10.4696 9 11 9H16.08C16.5545 8.99987 17.0127 9.17675 17.3734 9.49727C17.7341 9.81779 17.9729 10.261 18.04 10.73L18.96 15.65C19.0379 16.0378 18.9801 16.4401 18.7966 16.7931C18.6131 17.1461 18.3162 17.4322 17.95 17.6L15.2 19.29C16.2391 21.717 17.8756 23.8509 19.9349 25.4737C21.9942 27.0964 24.4247 28.1437 27 28.47L28.74 25.68C28.9148 25.3346 29.1894 25.0581 29.5271 24.887C29.8647 24.7159 30.2486 24.6591 30.62 24.73L35.77 25.68C36.2265 25.7532 36.6438 25.9926 36.948 26.3499C37.2523 26.7072 37.4177 27.16 37.42 27.63V32C37.42 32.5304 37.2093 33.0391 36.8342 33.4142C36.4591 33.7893 35.9504 34 35.42 34H30C29.4696 34 28.9609 33.7893 28.5858 33.4142C28.2107 33.0391 28 32.5304 28 32V24.92C28 24.3896 28.2107 23.8809 28.5858 23.5058C28.9609 23.1307 29.4696 22.92 30 22.92H32C32.5304 22.92 33.0391 23.1307 33.4142 23.5058C33.7893 23.8809 34 24.3896 34 24.92H32Z" fill="white"/>
+            </svg>
+        </div>
+        <p class="emergency-contact-text">
+            Tekan tombol <strong>Kontak Darurat</strong> untuk mendapatkan nomor dan narahubung dari instansi terkait bila diperlukan
+        </p>
+        </div>
+        
+        <!-- Section untuk Nonaktifkan Tombol Darurat -->
+        <div class="emergency-deactivate-section">
+        <h3 class="emergency-deactivate-title">Nonaktifkan Tombol Darurat</h3>
+        <p class="emergency-deactivate-text">Bila situasi telah kondusif tombol dapat dimatikan</p>
+        
+        <!-- Tombol Aksi -->
+        <button class="emergency-action-button safe-button" id="situationSafeButton">
+            Situasi Telah Aman
+        </button>
+        <button class="emergency-action-button accident-button" id="accidentalPressButton">
+            Tombol Tidak Sengaja Tertekan
+        </button>
+        </div>
+        
+        <!-- Footer Note -->
+        <p class="emergency-footer-note">
+        Gunakan tombol dengan bijak sesuai kebutuhan.<br>
+        Jangan lakukan inisiasi pengetesan tanpa permintaan<br>
+        dari pengembang aplikasi!
+        </p>
+    </div>
+    </div>
+
     <script>
         // Deteksi layar mobile yang lebih akurat
         function isMobile() {
@@ -543,6 +598,92 @@
             // Tampilkan slide pertama
             showSlide(0);
         }
+
+        // Fungsi untuk menampilkan emergency popup dari bawah layar
+        function showEmergencyConfirmation() {
+            // Tutup modal emergency sebelumnya jika terbuka
+            const modalEmergency = document.querySelector('#modalEmergency');
+            if (modalEmergency && modalEmergency.classList.contains('show')) {
+                modalEmergency.classList.remove('show');
+                
+                // Memberikan jeda animasi sebelum menampilkan popup baru
+                setTimeout(() => {
+                document.querySelector('#emergencyConfirmationPopup').classList.add('active');
+                }, 300); // Jeda 300ms untuk smooth transition
+            } else {
+                // Langsung tampilkan popup jika modal tidak sedang terbuka
+                document.querySelector('#emergencyConfirmationPopup').classList.add('active');
+            }
+            
+            // Nonaktifkan scroll body agar tidak mengganggu popup
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Fungsi untuk menutup emergency popup dengan animasi slide-down
+        function closeEmergencyConfirmation() {
+            const emergencyPopup = document.querySelector('#emergencyConfirmationPopup');
+            if (emergencyPopup) {
+                emergencyPopup.classList.remove('active');
+                
+                // Aktifkan kembali scroll setelah popup tertutup
+                setTimeout(() => {
+                document.body.style.overflow = '';
+                }, 400); // Jeda sampai animasi selesai
+            }
+        }
+
+        // Tambahkan ini ke dalam fungsi kirimPesan() yang sudah ada
+        function kirimPesan() {
+            const input = document.querySelector('.input-with-icon input');
+            if (input && input.value.trim() !== '') {
+                input.value = '';
+                
+                // Tampilkan popup konfirmasi dengan animasi slide-up
+                showEmergencyConfirmation();
+                
+                // Tracking untuk analitik (opsional)
+                if (typeof gtag !== 'undefined') {
+                gtag('event', 'emergency_message_sent', {
+                    'event_category': 'Emergency',
+                    'event_label': 'User sent emergency message'
+                });
+                }
+            } else {
+                alert('Silakan ketik pesan terlebih dahulu');
+            }
+        }
+        
+        // Menambahkan event listener untuk tombol darurat di modal emergency
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menambahkan event listener untuk tombol-tombol darurat di modal
+            const emergencyButtons = document.querySelectorAll('.emergency-button-option');
+            emergencyButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Menampilkan popup konfirmasi darurat
+                showEmergencyConfirmation();
+            });
+            });
+            
+            // Event listener untuk tombol Situasi Telah Aman
+            const situationSafeButton = document.querySelector('#situationSafeButton');
+            if (situationSafeButton) {
+            situationSafeButton.addEventListener('click', function() {
+                closeEmergencyConfirmation();
+                // Fungsi tambahan bila diperlukan
+                console.log('Situasi telah aman');
+            });
+            }
+            
+            // Event listener untuk tombol Tidak Sengaja Tertekan
+            const accidentalPressButton = document.querySelector('#accidentalPressButton');
+            if (accidentalPressButton) {
+            accidentalPressButton.addEventListener('click', function() {
+                closeEmergencyConfirmation();
+                // Fungsi tambahan bila diperlukan
+                console.log('Tombol tidak sengaja tertekan');
+            });
+            }
+        });
     </script>
 </body>
 </html>

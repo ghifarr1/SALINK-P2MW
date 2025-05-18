@@ -677,6 +677,181 @@ body {
     animation: slideUp 0.3s ease; /* Animasi slide dari bawah */
 }
 
+/* Styles untuk Emergency Popup - Bottom Slide Up */
+.emergency-popup {
+  display: block; /* Selalu ada dalam DOM tapi tersembunyi */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  z-index: 1000; /* Ensure it's above other content */
+  opacity: 0; /* Mulai dengan tidak terlihat */
+  pointer-events: none; /* Tidak dapat berinteraksi saat tersembunyi */
+  transition: opacity 0.3s ease; /* Animasi untuk fade in/out overlay */
+}
+
+.emergency-popup-content {
+  background-color: white;
+  width: 100%;
+  max-width: 360px; /* Sesuai spec mobile-first */
+  border-radius: 16px 16px 0 0; /* Rounded top corners only */
+  padding: 24px 16px;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15); /* Shadow at top */
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%); /* Mulai dari bawah layar */
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Smooth slide animation */
+  max-height: 90vh; /* Mencegah popup terlalu tinggi */
+  overflow-y: auto; /* Scroll jika konten terlalu panjang */
+}
+
+/* Show state untuk animasi */
+.emergency-popup.active {
+  opacity: 1;
+  pointer-events: auto; /* Mengaktifkan interaksi */
+}
+
+.emergency-popup.active .emergency-popup-content {
+  transform: translateX(-50%) translateY(0); /* Slide up ke posisi */
+}
+
+.emergency-popup-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 18px; /* Ukuran font lebih kecil untuk mobile */
+  font-weight: 700;
+  text-align: center;
+  color: #000;
+  margin: 0 0 16px 0;
+}
+
+.emergency-alert-card {
+  display: flex;
+  align-items: flex-start; /* Kembali ke flex-start untuk konsistensi */
+  background-color: #FFF8E1; /* Warna kuning lembut */
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  gap: 12px; /* Konsisten gap antara icon dan text */
+}
+
+.emergency-alert-icon {
+  flex-shrink: 0;
+  width: 48px; /* Fixed size sesuai mockup */
+  height: 48px;
+  margin-top: 2px; /* Sedikit margin atas untuk alignment lebih baik */
+}
+
+.emergency-alert-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  color: #444;
+  line-height: 1.5;
+  margin: 0;
+  flex: 1;
+  /* Menghapus display: flex dan min-height */
+}
+
+.emergency-contact-card {
+  display: flex;
+  align-items: flex-start; /* Kembali ke flex-start untuk alignment yang lebih baik dengan teks multiline */
+  background-color: #FFEBEE; /* Warna merah lembut */
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  gap: 12px; /* Konsisten gap */
+}
+
+.emergency-contact-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  margin-top: 2px; /* Sedikit margin atas untuk alignment lebih baik */
+}
+
+.emergency-contact-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  color: #444;
+  line-height: 1.5;
+  margin: 0;
+  flex: 1;
+  /* Menghapus display: flex dan min-height untuk menangani teks multiline */
+}
+
+.emergency-deactivate-section {
+  background-color: #F5F5F5; /* Warna abu-abu lembut */
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  text-align: center; /* Menengahkan semua teks di section ini */
+}
+
+.emergency-action-button {
+  display: block;
+  width: 100%;
+  padding: 12px; /* Slightly smaller padding for better fit */
+  border: none;
+  border-radius: 8px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-bottom: 12px;
+}
+
+.safe-button {
+  background-color: #1A9465; /* Warna hijau */
+}
+
+.safe-button:hover {
+  background-color: #158055; /* Slightly darker on hover */
+}
+
+.accident-button {
+  background-color: #F5BB3D; /* Warna kuning */
+  color: #000; /* Text hitam untuk kontras lebih baik */
+}
+
+.accident-button:hover {
+  background-color: #E5AB2D; /* Slightly darker on hover */
+}
+
+.emergency-footer-note {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px; /* Smaller for mobile */
+  color: #888;
+  text-align: center;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Media Query untuk layar lebih besar dari 768px */
+@media (min-width: 768px) {
+  .emergency-popup-content {
+    max-width: 420px; /* Sedikit lebih lebar di desktop */
+    padding: 28px 20px;
+  }
+  
+  .emergency-popup-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .emergency-action-button {
+    padding: 14px;
+    font-size: 15px;
+  }
+  
+  .emergency-footer-note {
+    font-size: 12px;
+  }
+}
+
 /* Animasi slide up untuk modal */
 @keyframes slideUp {
     from {
