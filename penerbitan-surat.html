@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penerbitan Surat - Aplikasi Lingkungan</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/penerbitan-surat.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section dengan back button -->
+        <header class="header-penerbitan">
+            <button class="back-button" onclick="window.history.back()" aria-label="Kembali">
+                <img src="assets/icons/back-icon.png" alt="Kembali">
+            </button>
+            <h1 class="header-title">Penerbitan Surat</h1>
+        </header>
+        
+        <!-- Main Content -->
+        <main class="main-content penerbitan-content">
+            <form id="formPenerbitanSurat" onsubmit="return submitSurat(event)">
+                <!-- Jenis Surat -->
+                <div class="form-section">
+                    <label for="jenisSurat">Jenis Surat</label>
+                    <div class="select-wrapper">
+                        <select id="jenisSurat" name="jenisSurat" required>
+                            <option value="" disabled selected>Pilih jenis surat</option>
+                            <option value="domisili">Surat Keterangan Domisili</option>
+                            <option value="tidakmampu">Surat Keterangan Tidak Mampu</option>
+                            <option value="usaha">Surat Keterangan Usaha</option>
+                            <option value="pengantar">Surat Pengantar</option>
+                        </select>
+                        <div class="select-arrow"></div>
+                    </div>
+                </div>
+                
+                <!-- Isi Data Diri -->
+                <div class="form-section">
+                    <h2 class="section-title">Isi Data Diri</h2>
+                    
+                    <div class="form-group">
+                        <label for="nik">NIK</label>
+                        <input type="text" id="nik" name="nik" placeholder="Masukkan nomor NIK sesuai KTP" required maxlength="16" pattern="[0-9]{16}">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="nama">Nama</label>
+                        <input type="text" id="nama" name="nama" placeholder="Masukkan nama lengkap anda" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ttl">Tempat/Tanggal Lahir</label>
+                        <input type="text" id="ttl" name="ttl" placeholder="Tempat lahir, dd-mm-yyyy" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pekerjaan">Pekerjaan</label>
+                        <input type="text" id="pekerjaan" name="pekerjaan" placeholder="Masukkan Pekerjaan Sesuai KTP" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="keperluan">Keperluan</label>
+                        <input type="text" id="keperluan" name="keperluan" placeholder="Isi keterangan peruntukan pembuatan surat" required>
+                    </div>
+                </div>
+                
+                <!-- Submit Button -->
+                <div class="submit-container">
+                    <button type="submit" class="submit-button">Buat Permohonan Surat</button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <!-- Pop-up Konfirmasi Pengiriman Surat -->
+    <div class="popup-overlay" id="popupKonfirmasi">
+        <div class="popup-container">
+            <div class="popup-icon-success">
+                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="32" cy="32" r="32" fill="#1A9465" fill-opacity="0.1"/>
+                    <path d="M32 56C45.2548 56 56 45.2548 56 32C56 18.7452 45.2548 8 32 8C18.7452 8 8 18.7452 8 32C8 45.2548 18.7452 56 32 56Z" fill="#1A9465"/>
+                    <path d="M23 32L29 38L41 26" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <h2 class="popup-title">Permohonan Terkirim</h2>
+            <p class="popup-description">
+                Surat permohonan Anda telah berhasil dikirim ke petugas RT. Status permohonan dapat dilihat pada menu Akun > Riwayat Permohonan.
+            </p>
+            <div class="popup-info">
+                <div class="info-item">
+                    <span class="info-label">Jenis Surat:</span>
+                    <span class="info-value" id="popupJenisSurat">Surat Keterangan Domisili</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Nomor Permohonan:</span>
+                    <span class="info-value" id="popupNomorPermohonan">SR-2025051801</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Tanggal Pengajuan:</span>
+                    <span class="info-value" id="popupTanggalPengajuan">18 Mei 2025</span>
+                </div>
+            </div>
+            <button class="popup-button" id="btnClosePopup">Kembali ke Beranda</button>
+        </div>
+    </div>
+        
+    <script src="js/penerbitan-surat.js"></script>
+</body>
+</html>
