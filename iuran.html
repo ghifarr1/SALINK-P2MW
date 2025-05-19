@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <!-- Viewport meta tag untuk tampilan mobile yang responsif -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iuran Warga</title>
+    <!-- Penggunaan font Plus Jakarta Sans sesuai dengan desain Indonesia -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/iuran.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header dengan back button, judul, dan tab navigation -->
+        <header class="iuran-header">
+            <!-- Back button di sisi kiri header -->
+            <a href="index.html" class="back-button">
+                <img src="assets/icons/back-icon.png" alt="Kembali">
+            </a>
+            
+            <!-- Judul halaman di tengah header -->
+            <h1 class="header-title">Iuran Warga</h1>
+        </header>
+        
+        <!-- Tab navigation untuk Tagihan dan Riwayat -->
+        <div class="tab-navigation">
+            <a href="#" class="tab-item active" data-tab="tagihan">Tagihan</a>
+            <a href="#" class="tab-item" data-tab="riwayat">Riwayat</a>
+            <!-- Indikator tab aktif -->
+            <div class="tab-indicator"></div>
+        </div>
+        
+        <!-- Konten Tab Tagihan - visible by default -->
+        <main class="iuran-list tab-content active" id="tagihan-content">
+            <!-- Item iuran pertama tanpa highlight -->
+            <div class="iuran-item">
+                <div class="iuran-details">
+                    <h3 class="iuran-title">Iuran Kas RT 12</h3>
+                    <p class="iuran-period">Maret 2025</p>
+                    <p class="iuran-amount">Total Rp50.000</p>
+                    <p class="iuran-due-date">Tanggal Pembayaran: 31 Maret 2025 23:59</p>
+                </div>
+                <button class="bayar-button">Bayar</button>
+            </div>
+            
+            <!-- Item iuran kedua dan seterusnya -->
+            <div class="iuran-item">
+                <div class="iuran-details">
+                    <h3 class="iuran-title">Iuran Kas RT 12</h3>
+                    <p class="iuran-period">Maret 2025</p>
+                    <p class="iuran-amount">Total Rp50.000</p>
+                    <p class="iuran-due-date">Tanggal Pembayaran: 31 Maret 2025 23:59</p>
+                </div>
+                <button class="bayar-button">Bayar</button>
+            </div>
+            
+            <div class="iuran-item">
+                <div class="iuran-details">
+                    <h3 class="iuran-title">Iuran Kas RT 12</h3>
+                    <p class="iuran-period">Maret 2025</p>
+                    <p class="iuran-amount">Total Rp50.000</p>
+                    <p class="iuran-due-date">Tanggal Pembayaran: 31 Maret 2025 23:59</p>
+                </div>
+                <button class="bayar-button">Bayar</button>
+            </div>
+        </main>
+        
+        <!-- Konten Tab Riwayat - hidden by default -->
+        <main class="iuran-list tab-content" id="riwayat-content">
+            <!-- Item riwayat pembayaran -->
+            <div class="iuran-item riwayat-item">
+                <div class="iuran-details">
+                    <h3 class="iuran-title">Iuran Kas RT 12</h3>
+                    <p class="iuran-period">Februari 2025</p>
+                    <p class="iuran-amount">Total Rp50.000</p>
+                    <p class="iuran-due-date">Tanggal Pembayaran: 28 Februari 2025 23:59</p>
+                    <p class="payment-status paid">Lunas</p>
+                </div>
+            </div>
+            
+            <div class="iuran-item riwayat-item">
+                <div class="iuran-details">
+                    <h3 class="iuran-title">Iuran Kas RT 12</h3>
+                    <p class="iuran-period">Januari 2025</p>
+                    <p class="iuran-amount">Total Rp50.000</p>
+                    <p class="iuran-due-date">Tanggal Pembayaran: 31 Januari 2025 23:59</p>
+                    <p class="payment-status paid">Lunas</p>
+                </div>
+            </div>
+            
+            <div class="iuran-item riwayat-item">
+                <div class="iuran-details">
+                    <h3 class="iuran-title">Iuran Kas RT 12</h3>
+                    <p class="iuran-period">Desember 2024</p>
+                    <p class="iuran-amount">Total Rp50.000</p>
+                    <p class="iuran-due-date">Tanggal Pembayaran: 31 Desember 2024 23:59</p>
+                    <p class="payment-status paid">Lunas</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/iuran.js"></script>
+</body>
+</html>

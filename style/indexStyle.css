@@ -728,20 +728,30 @@ body {
 }
 
 .emergency-alert-card {
-  display: flex;
-  align-items: flex-start; /* Kembali ke flex-start untuk konsistensi */
   background-color: #FFF8E1; /* Warna kuning lembut */
   border-radius: 12px;
-  padding: 16px;
+  padding: 20px;
   margin-bottom: 16px;
-  gap: 12px; /* Konsisten gap antara icon dan text */
+  width: 100%; /* Full width */
+  max-width: 500px; /* Adjust this value to control maximum width */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.emergency-alert-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .emergency-alert-icon {
-  flex-shrink: 0;
-  width: 48px; /* Fixed size sesuai mockup */
+  margin-bottom: 16px;
+}
+
+.emergency-alert-icon img {
+  width: 48px;
   height: 48px;
-  margin-top: 2px; /* Sedikit margin atas untuk alignment lebih baik */
 }
 
 .emergency-alert-text {
@@ -750,8 +760,8 @@ body {
   color: #444;
   line-height: 1.5;
   margin: 0;
-  flex: 1;
-  /* Menghapus display: flex dan min-height */
+  text-align: center;
+  font-weight: normal; /* Text will be bolded with the <strong> tag */
 }
 
 .emergency-contact-card {
@@ -769,6 +779,19 @@ body {
   width: 48px;
   height: 48px;
   margin-top: 2px; /* Sedikit margin atas untuk alignment lebih baik */
+}
+
+.callpopup-icon {
+    width: 74px;
+    height: 74px;
+    border-radius: 17px;
+    /* Gradient background untuk menu icon */
+    background: linear-gradient(to bottom, #e53935, #b71c1c);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+    margin-bottom: 6px;
 }
 
 .emergency-contact-text {
