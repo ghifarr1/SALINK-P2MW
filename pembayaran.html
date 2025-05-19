@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <!-- Viewport meta tag untuk tampilan mobile yang responsif -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran Iuran</title>
+    <!-- Font Plus Jakarta Sans sesuai dengan desain Indonesia -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/pembayaran.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header dengan back button dan judul halaman sesuai mockup -->
+        <header class="pembayaran-header">
+            <!-- Back button di sisi kiri header -->
+            <a href="iuran.html" class="back-button">
+                <img src="assets/icons/back-icon.png" alt="Kembali">
+            </a>
+            
+            <!-- Judul halaman di tengah header -->
+            <h1 class="header-title">Pembayaran</h1>
+        </header>
+        
+        <!-- Informasi tagihan dalam card putih sesuai mockup -->
+        <div class="tagihan-info">
+            <div class="tagihan-details">
+                <h3 class="tagihan-title">Iuran Kas RT 12</h3>
+                <p class="tagihan-period">Maret 2025</p>
+                <div class="tagihan-total">
+                    <span class="total-label">Total</span>
+                    <span class="total-amount">Rp 50.000</span>
+                </div>
+                <p class="tagihan-due-date">Tanggal: 31 Maret 2025 23:59</p>
+            </div>
+        </div>
+        
+        <!-- Pilihan metode pembayaran sesuai mockup -->
+        <div class="payment-method-container">
+            <h2 class="payment-section-title">Pilih Metode Pembayaran</h2>
+            
+            <div class="payment-methods">
+                <!-- QRIS - default selected sesuai mockup -->
+                <div class="payment-method-item">
+                    <div class="payment-method-logo">
+                        <img src="assets/icons/qris.png" alt="QRIS">
+                    </div>
+                    <div class="payment-method-info">
+                        <span class="payment-method-name">QRIS</span>
+                        <span class="payment-method-desc">Didukung semua metode pembayaran</span>
+                    </div>
+                    <div class="payment-method-radio">
+                        <input type="radio" id="qris" name="payment-method" checked>
+                        <label for="qris" class="radio-custom"></label>
+                    </div>
+                </div>
+                
+                <!-- Dana -->
+                <div class="payment-method-item">
+                    <div class="payment-method-logo">
+                        <img src="assets/icons/dana.png" alt="Dana">
+                    </div>
+                    <div class="payment-method-info">
+                        <span class="payment-method-name">Dana</span>
+                    </div>
+                    <div class="payment-method-radio">
+                        <input type="radio" id="dana" name="payment-method">
+                        <label for="dana" class="radio-custom"></label>
+                    </div>
+                </div>
+                
+                <!-- Gopay -->
+                <div class="payment-method-item">
+                    <div class="payment-method-logo">
+                        <img src="assets/icons/gopay.png" alt="Gopay">
+                    </div>
+                    <div class="payment-method-info">
+                        <span class="payment-method-name">Gopay</span>
+                    </div>
+                    <div class="payment-method-radio">
+                        <input type="radio" id="gopay" name="payment-method">
+                        <label for="gopay" class="radio-custom"></label>
+                    </div>
+                </div>
+                
+                <!-- OVO -->
+                <div class="payment-method-item">
+                    <div class="payment-method-logo">
+                        <img src="assets/icons/ovo.png" alt="OVO">
+                    </div>
+                    <div class="payment-method-info">
+                        <span class="payment-method-name">OVO</span>
+                        <span class="payment-method-desc">Bayar iuran OVO dengan Debit</span>
+                    </div>
+                    <div class="payment-method-radio">
+                        <input type="radio" id="ovo" name="payment-method">
+                        <label for="ovo" class="radio-custom"></label>
+                    </div>
+                </div>
+                
+                <!-- Transfer Akun Virtual -->
+                <div class="payment-method-item dropdown-toggle">
+                    <div class="payment-method-logo">
+                        <img src="assets/icons/transfer.png" alt="Transfer">
+                    </div>
+                    <div class="payment-method-info">
+                        <span class="payment-method-name">Transfer Bank</span>
+                    </div>
+                    <div class="payment-method-radio dropdown-indicator">
+                        <!-- <input type="radio" id="transfer" name="payment-method">
+                        <label for="transfer" class="radio-custom"></label> -->
+                        <img src="assets/icons/dropdown.png" alt="Expand" class="dropdown-icon">
+                    </div>
+                </div>
+                
+                <!-- Bank transfer options - hidden by default -->
+                <div class="bank-options" id="bank-options">
+                    <!-- BCA Virtual Account -->
+                    <div class="payment-method-item bank-option">
+                        <div class="payment-method-logo">
+                            <img src="assets/icons/bca.png" alt="BCA">
+                        </div>
+                        <div class="payment-method-info">
+                            <span class="payment-method-name">BCA Virtual Account</span>
+                        </div>
+                        <div class="payment-method-radio">
+                            <input type="radio" id="bca" name="payment-method">
+                            <label for="bca" class="radio-custom"></label>
+                        </div>
+                    </div>
+                    
+                    <!-- BRI Virtual Account -->
+                    <div class="payment-method-item bank-option">
+                        <div class="payment-method-logo">
+                            <img src="assets/icons/bri.png" alt="BRI">
+                        </div>
+                        <div class="payment-method-info">
+                            <span class="payment-method-name">BRI Virtual Account</span>
+                        </div>
+                        <div class="payment-method-radio">
+                            <input type="radio" id="bri" name="payment-method">
+                            <label for="bri" class="radio-custom"></label>
+                        </div>
+                    </div>
+                    
+                    <!-- Mandiri Virtual Account -->
+                    <div class="payment-method-item bank-option">
+                        <div class="payment-method-logo">
+                            <img src="assets/icons/mandiri.png" alt="Mandiri">
+                        </div>
+                        <div class="payment-method-info">
+                            <span class="payment-method-name">Mandiri Virtual Account</span>
+                            <span class="payment-method-desc">Debit Instant</span>
+                        </div>
+                        <div class="payment-method-radio">
+                            <input type="radio" id="mandiri" name="payment-method">
+                            <label for="mandiri" class="radio-custom"></label>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tombol bayar sekarang full-width di bawah layar sesuai mockup -->
+        <div class="payment-action">
+            <button class="pay-now-button">Bayar Sekarang</button>
+        </div>
+    </div>
+
+    <script src="js/pembayaran.js"></script>
+</body>
+</html>

@@ -1,0 +1,319 @@
+/* CSS untuk halaman pembayaran.html */
+
+/* Reset dasar dan font default */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 767px;
+    margin: 0 auto;
+    padding-bottom: 80px; /* Ruang untuk tombol bayar sekarang */
+}
+
+/* Styling untuk header sesuai mockup */
+.pembayaran-header {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    position: relative;
+}
+
+.back-button {
+    position: absolute;
+    left: 16px;
+}
+
+.back-button img {
+    width: 24px;
+    height: 24px;
+}
+
+.header-title {
+    flex: 1;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Card info tagihan sesuai mockup */
+.tagihan-info {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin: 16px;
+    padding: 16px;
+}
+
+.tagihan-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.tagihan-period {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.tagihan-total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+.total-label {
+    color: #666;
+}
+
+.total-amount {
+    font-weight: 700;
+    color: #000;
+}
+
+.tagihan-due-date {
+    font-size: 12px;
+    color: #666;
+    padding-top: 8px;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 8px;
+}
+
+/* Pilihan metode pembayaran sesuai mockup */
+.payment-section-title {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0 16px;
+    margin: 16px 0 8px;
+}
+
+.payment-methods {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin: 0 16px;
+    overflow: hidden;
+}
+
+.payment-method-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid #e0e0e0;
+    position: relative;
+}
+
+.payment-method-item:last-child {
+    border-bottom: none;
+}
+
+.payment-method-logo {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 16px;
+}
+
+.payment-method-logo img {
+    max-width: 40px;
+    max-height: 40px;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}
+
+/* Efek hover pada logo untuk interaktivitas */
+.payment-method-item:hover .payment-method-logo img {
+    transform: scale(1.05);
+}
+
+.payment-method-info {
+    flex: 1;
+}
+
+.payment-method-name {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.payment-method-desc {
+    display: block;
+    font-size: 12px;
+    color: #666;
+}
+
+.payment-method-radio {
+    display: flex;
+    align-items: center;
+}
+
+/* Custom styling untuk radio button sesuai mockup dengan animasi yang lebih baik */
+input[type="radio"] {
+    display: none;
+}
+
+.radio-custom {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    transition: border-color 0.3s ease, transform 0.2s ease;
+}
+
+.payment-method-item:hover .radio-custom {
+    border-color: #0D9276;
+    transform: scale(1.05);
+}
+
+input[type="radio"]:checked + .radio-custom {
+    border-color: #0D9276;
+    animation: pulse 0.3s ease-out;
+}
+
+input[type="radio"]:checked + .radio-custom::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 12px;
+    height: 12px;
+    background-color: #0D9276; /* Warna hijau sesuai mockup */
+    border-radius: 50%;
+    animation: radioFill 0.3s forwards;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(13, 146, 118, 0.4); }
+    100% { box-shadow: 0 0 0 8px rgba(13, 146, 118, 0); }
+}
+
+@keyframes radioFill {
+    from { transform: translate(-50%, -50%) scale(0); }
+    to { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Dropdown styling untuk Transfer Bank dengan animasi yang lebih baik */
+.dropdown-toggle {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-toggle:hover {
+    background-color: #f9f9f9;
+}
+
+.dropdown-indicator {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-icon {
+    width: 16px;
+    height: 16px;
+    margin-left: 8px;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.dropdown-toggle.active .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+.bank-options {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease-in-out;
+    background-color: #f9f9f9;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.bank-options.visible {
+    max-height: 1000px; /* Nilai maksimum yang cukup untuk menampung semua opsi */
+}
+
+.bank-option {
+    padding-left: 24px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #e0e0e0;
+    transform: translateY(-5px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.bank-options.visible .bank-option {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Delay pada animasi untuk efek cascade */
+.bank-options.visible .bank-option:nth-child(1) { transition-delay: 0.05s; }
+.bank-options.visible .bank-option:nth-child(2) { transition-delay: 0.1s; }
+.bank-options.visible .bank-option:nth-child(3) { transition-delay: 0.15s; }
+.bank-options.visible .bank-option:nth-child(4) { transition-delay: 0.2s; }
+.bank-options.visible .bank-option:nth-child(5) { transition-delay: 0.25s; }
+.bank-options.visible .bank-option:nth-child(6) { transition-delay: 0.3s; }
+
+/* Tombol bayar sekarang di bawah layar */
+.payment-action {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px;
+    background-color: #fff;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.pay-now-button {
+    width: 100%;
+    padding: 14px;
+    background-color: #0D9276; /* Warna hijau sesuai mockup */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.pay-now-button:hover {
+    background-color: #0a7d64;
+}
+
+/* Media query untuk perangkat yang lebih besar */
+@media (min-width: 768px) {
+    .container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding-bottom: 100px;
+    }
+    
+    .payment-action {
+        max-width: 600px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
